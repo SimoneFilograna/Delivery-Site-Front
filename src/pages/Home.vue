@@ -2,7 +2,32 @@
     import axios from 'axios';
 
     export default {
+        data() {
+            return {
+                resturants: [],
+                cusineSelected: []
+            }
+        },
 
+        methods: {
+            fetchResturants() {
+                axios.get("http://127.0.0.1:8000/api")
+                    .then((response) => {
+                        this.resturants = response.data;
+                    })
+            },
+
+            filterData() {
+                var params = new URLSearchParams();
+
+                
+
+                axios.get("http://127.0.0.1:8000/api")
+                    .then((Response) => {
+
+                    })
+            }
+        }
     }
 </script>
 
