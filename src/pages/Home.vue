@@ -7,8 +7,8 @@
 </script>
 
 <template>
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid p-0 overflow-x-hidden">
+        <div class="row lateralSpacing ">
             <div class="col-2">
                 <div class="filterTitle">Filtro Cucine</div>
 
@@ -54,9 +54,9 @@
             <div class="col-10">
                 <div class="filterTitle mb-4">Ristoranti che consegnano a Milano</div>
 
-                <div class="container-fluid">
+                <div class="container-fluid p-0">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-3 mb-4">
                             <div class="card h-100">
                                 <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
 
-                        <div class="col-3">
+                        <div class="col-3 mb-4">
                             <div class="card h-100">
                                 <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -76,7 +76,7 @@
                             </div>
                         </div>
 
-                        <div class="col-3">
+                        <div class="col-3 mb-4">
                             <div class="card h-100">
                                 <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -86,7 +86,27 @@
                             </div>
                         </div>
 
-                        <div class="col-3">
+                        <div class="col-3 mb-4">
+                            <div class="card h-100">
+                                <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ristorante del pendolo</h5>
+                                    <p class="card-text">Italiano</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3 mb-4">
+                            <div class="card h-100">
+                                <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ristorante del pendolo</h5>
+                                    <p class="card-text">Italiano</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3 mb-4">
                             <div class="card h-100">
                                 <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -103,12 +123,8 @@
 </template>
 
 <style lang="scss" scoped>
-  .row {
+  .lateralSpacing {
     padding: 0px 64px;
-  }
-
-  .row div {
-    padding: 0;
   }
 
   .filterTitle {
@@ -126,17 +142,5 @@
 
   .form-check .form-check-input {
     margin-left: 0;
-  }
-
-  .form-check {
-    margin-left: 23px;
-  }
-
-  .row {
-    margin: 0;
-  }
-
-  .container-fluid {
-    padding: 0;
   }
 </style>
