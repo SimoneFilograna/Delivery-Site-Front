@@ -1,71 +1,21 @@
 <script>
-  export default {
+  import NavbarComponent from "../src/components/Navbar.vue";
 
+  export default {
+    components: {
+      NavbarComponent
+    }
   }
 </script>
 
 <template>
   <div class="wrapper">
-    <nav class="d-flex align-items-center justify-content-between">
-      <RouterLink :to="{name: 'home'}" class="text-decoration-none logo_text">DeliveBoo</RouterLink>
-
-      <form class="h-100 d-flex">
-        <div class="searchContainer">
-              <img src="/search-icon.png" alt="" class="searchIcon">
-              <input type="text" placeholder="Cerca Ristoranti" class="searchCustom">
-            </div>
-      </form>
-
-      <div class="d-flex gap-4">
-        <RouterLink :to="{name: 'home'}" class="text-decoration-none nav_link">Login</RouterLink>
-        <RouterLink :to="{name: 'home'}" class="text-decoration-none nav_link">Register</RouterLink>
-      </div>
-      
-    </nav>
+    <NavbarComponent></NavbarComponent>
 
     <Router-view></Router-view>
   </div>
 </template>
 
 <style>
-  .searchContainer {
-    display: flex;
-    background-color: #f5f5f5;
-    border: 1px solid #e8ebeb;
-    border-radius: 4px;
-    gap: 8px;
-    padding: 8px 12px;
-    width: 650px;
-    margin: 13px 0px;
-  }
-
-  .searchCustom{
-    background-color: transparent;
-    border: 0;
-    width: 650px;
-  }
-
-  .searchIcon {
-    color: #abadad;
-  }
-
-  input:focus-visible {
-    outline: none;
-    color: black;
-  }
-
-  .nav_link {
-    color: black;
-  }
-
-  .logo_text {
-    color: #00ccbc;
-    font-weight: bold;
-    font-size: 30px;
-  }
-
-  nav {
-    padding: 0 64px;
-    border-bottom: 1px solid #ebebeb;
-  }
+  
 </style>
