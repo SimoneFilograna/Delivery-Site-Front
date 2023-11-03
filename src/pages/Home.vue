@@ -4,29 +4,44 @@
     export default {
         data() {
             return {
-                resturants: [],
+                restaurants: [],
                 cusineSelected: []
             }
         },
 
         methods: {
             fetchResturants() {
-                axios.get("http://127.0.0.1:8000/api")
-                    .then((response) => {
-                        this.resturants = response.data;
+                axios.get("http://127.0.0.1:8000/api/restaurants", {
+                    headers: {
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                }).then((response) => {
+                        this.restaurants = response.data;
+
+                        console.log(this.restaurants);
                     })
             },
 
             filterData() {
+                // @ts-ignore
                 var params = new URLSearchParams();
 
                 
 
                 axios.get("http://127.0.0.1:8000/api")
+                    // @ts-ignore
                     .then((Response) => {
 
                     })
+            },
+
+            getImageURL(restaurant) {
+                return `http://127.0.0.1:8000/storage/${restaurant.restaurant_image}`;
             }
+        },
+
+        mounted() {
+            this.fetchResturants();
         }
     }
 </script>
@@ -81,62 +96,14 @@
 
                 <div class="container-fluid p-0">
                     <div class="row">
-                        <div class="col-3 mb-4">
+                        <div class="col-3 mb-4" v-for="restaurant in restaurants" :key="restaurant.id">
                             <div class="card h-100">
-                                <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
+                                <img :src="getImageURL(restaurant)" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">Ristorante del pendolo</h5>
-                                    <p class="card-text">Italiano</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-3 mb-4">
-                            <div class="card h-100">
-                                <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Ristorante del pendolo</h5>
-                                    <p class="card-text">Italiano</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-3 mb-4">
-                            <div class="card h-100">
-                                <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Ristorante del pendolo</h5>
-                                    <p class="card-text">Italiano</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-3 mb-4">
-                            <div class="card h-100">
-                                <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Ristorante del pendolo</h5>
-                                    <p class="card-text">Italiano</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-3 mb-4">
-                            <div class="card h-100">
-                                <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Ristorante del pendolo</h5>
-                                    <p class="card-text">Italiano</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-3 mb-4">
-                            <div class="card h-100">
-                                <img src="https://media-assets.lacucinaitaliana.it/photos/61fac2ad07be724774c9c5a9/16:9/w_2560%2Cc_limit/Cena-a-Como-portrait.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Ristorante del pendolo</h5>
-                                    <p class="card-text">Italiano</p>
+                                    <h5 class="card-title">{{ restaurant.restaurant_name }}</h5>
+                                    <p class="card-text" v-for="cuisine in restaurant.cuisines">
+                                        {{ cuisine.cuisine_name }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
