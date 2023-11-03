@@ -33,14 +33,38 @@
                     })
             },
 
-            filterData() {
+            filterProducts(event) {
+                if(event.target.checked) {
+                    this.cusineSelected.push(event.target.value);
+                } else {
+                    const value = event.target.value;
+                    for(var cuisineChecked of this.cusineSelected) {
+                        if(cuisineChecked === value) {
+                            const index = this.cusineSelected.indexOf(cuisineChecked);
+                            this.cusineSelected.splice(index, 1);
+                        }
+                    }
+                }
+
+                console.log(this.cusineSelected);
+            },
+
+            filterData(event) {
+                this.filterProducts(event);
+
                 var params = new URLSearchParams();
 
-                
+                for(let i = 0; i < this.cusineSelected.length; i++ ) {
+                    params.append(`cuisine${i+1}`, this.cusineSelected[i]);
+                }
 
-                axios.get("http://127.0.0.1:8000/api")
+                var request = {
+                    params: params
+                }
+
+                axios.get("http://127.0.0.1:8000/api/restaurants", request)
                     .then((response) => {
-
+                        this.restaurants = response.data;
                     })
             },
 
@@ -64,8 +88,9 @@
 
                 <div class="list-group-item pt-3">
                     <div class="form-check mb-2" v-for="cuisine in cuisines" :key="cuisine.id">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" 
+                            @click="filterData($event)" :value="cuisine.cuisine_name" :id="cuisine.id">
+                        <label class="form-check-label" :for="cuisine.id">
                             {{ cuisine.cuisine_name }}
                         </label>
                     </div>
