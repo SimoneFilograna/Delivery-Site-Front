@@ -5,6 +5,7 @@
         data() {
             return {
                 restaurants: [],
+                cuisines: [],
                 cusineSelected: []
             }
         },
@@ -17,20 +18,28 @@
                     }
                 }).then((response) => {
                         this.restaurants = response.data;
+                    })
+            },
 
-                        console.log(this.restaurants);
+            fetchCuisines() {
+                axios.get("http://127.0.0.1:8000/api/cuisines", {
+                    headers: {
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                }).then((response) => {
+                        this.cuisines = response.data;
+
+                        console.log(this.cuisines);
                     })
             },
 
             filterData() {
-                // @ts-ignore
                 var params = new URLSearchParams();
 
                 
 
                 axios.get("http://127.0.0.1:8000/api")
-                    // @ts-ignore
-                    .then((Response) => {
+                    .then((response) => {
 
                     })
             },
@@ -42,6 +51,7 @@
 
         mounted() {
             this.fetchResturants();
+            this.fetchCuisines();
         }
     }
 </script>
@@ -53,38 +63,10 @@
                 <div class="filterTitle">Filtro Cucine</div>
 
                 <div class="list-group-item pt-3">
-                    <div class="form-check mb-2">
+                    <div class="form-check mb-2" v-for="cuisine in cuisines" :key="cuisine.id">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault">
-                            Italiano
-                        </label>
-                    </div>
-
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
-                        <label class="form-check-label" for="flexCheckDefault2">
-                            Cinese
-                        </label>
-                    </div>
-
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-                        <label class="form-check-label" for="flexCheckDefault3">
-                            Giapponese
-                        </label>
-                    </div>
-
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
-                        <label class="form-check-label" for="flexCheckDefault4">
-                            Kebab
-                        </label>
-                    </div>
-
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
-                        <label class="form-check-label" for="flexCheckDefault5">
-                            Poke
+                            {{ cuisine.cuisine_name }}
                         </label>
                     </div>
                 </div>
