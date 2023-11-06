@@ -16,8 +16,9 @@
         </form>
 
         <div class="d-flex gap-4">
-        <RouterLink :to="{name: 'home'}" class="text-decoration-none nav_link">Login</RouterLink>
-        <RouterLink :to="{name: 'home'}" class="text-decoration-none nav_link">Register</RouterLink>
+        <a href="http://127.0.0.1:8000/login" class="text-decoration-none nav_link">Login</a>
+        <a href="http://127.0.0.1:8000/register" class="text-decoration-none nav_link">Register</a>
+        
         </div>
         
     </nav>
