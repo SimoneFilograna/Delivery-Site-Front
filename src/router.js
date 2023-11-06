@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 // Importazione pagine
 
-import RestaurantShowPag from "./pages/RestaurantShowPage.vue";
+import RestaurantShowPage from "./pages/RestaurantShowPage.vue";
 import HomePage from "./pages/Home.vue";
 
 const routes= [
