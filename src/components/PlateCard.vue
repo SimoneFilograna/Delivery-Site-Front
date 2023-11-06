@@ -26,7 +26,9 @@ export default {
                     <h5 class="card-title">{{ Plate.plate_name }}</h5>
                     <p class="card-text">{{ Plate.description }}</p>
                     <p class="card-text"><small class="text-body-secondary">{{ Plate.ingredients }}</small></p>
+                    <p class="card-text">{{ Plate.price }}</p>
                 
+
                     <button class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
                 </div>
             </div>

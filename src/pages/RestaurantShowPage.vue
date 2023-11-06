@@ -23,6 +23,7 @@ export default {
             this.$router.push({name: "not-found"})
         }) 
     },
+    //fetching img data from backend
     getRestaurantImageUrl(restaurant) {
       return `http://127.0.0.1:8000/storage/${restaurant.restaurant_image}`;
 
@@ -58,8 +59,9 @@ export default {
             </div>
 
             <!-- Shopping Cart -->
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 shopping-cart border rounded-3">
 
+                <h3>Carrello Ordini</h3>
 
             </div>
         </div>
@@ -70,12 +72,13 @@ export default {
 </template>
 
 <style>
-*{
+/*{
     border: 1px red dashed;
     min-height: 20px;
-}
+}*/
 
 .card-img-top{
     max-width: 30vw;
 }
+
 </style>
