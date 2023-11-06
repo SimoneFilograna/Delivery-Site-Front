@@ -4,70 +4,87 @@
     export default {
         data() {
             return {
+                // List of restaurants 
                 restaurants: [],
+                // List of cuisines types
                 cuisines: [],
+                // List of the selected cuisines by client
                 cusineSelected: []
             }
         },
 
         methods: {
+            //GET API call that retrives the list of restaurants
             fetchResturants() {
+                //axios get call to URL
                 axios.get("http://127.0.0.1:8000/api/restaurants", {
                     headers: {
                         "Access-Control-Allow-Origin": "*"
                     }
                 }).then((response) => {
+                    // save datas in the restaurant array
                         this.restaurants = response.data;
                     })
             },
 
+            //GET API call that retrives the list of cuisines
             fetchCuisines() {
+                //axios get call to URL
                 axios.get("http://127.0.0.1:8000/api/cuisines", {
                     headers: {
                         "Access-Control-Allow-Origin": "*"
                     }
                 }).then((response) => {
+                    // save datas in the cuisine array
                         this.cuisines = response.data;
-
-                        console.log(this.cuisines);
                     })
             },
 
-            filterProducts(event) {
+            // Add/remove to array of selected cuisines if checkbox is clicked by client 
+            UpdateSlectedCuisines(event) {
+                //check if the checkbox is flagged
                 if(event.target.checked) {
+                    //add the value to the cuisine selected
                     this.cusineSelected.push(event.target.value);
                 } else {
+                    //get the value of the checkbox
                     const value = event.target.value;
-                    for(var cuisineChecked of this.cusineSelected) {
+                    //loop through the array of cuisine selected and remove this checkbox
+                    for(let cuisineChecked of this.cusineSelected) {
                         if(cuisineChecked === value) {
                             const index = this.cusineSelected.indexOf(cuisineChecked);
                             this.cusineSelected.splice(index, 1);
                         }
                     }
                 }
-
-                console.log(this.cusineSelected);
             },
 
+            //GET API call that sends the cuisines selected and retrives the filtered restaurants
             filterData(event) {
-                this.filterProducts(event);
+                //call the update cuisine function
+                this.UpdateSlectedCuisines(event);
 
-                var params = new URLSearchParams();
+                //create new URL search params object 
+                let params = new URLSearchParams();
 
+                //append the values that we want to pass in the axios call
                 for(let i = 0; i < this.cusineSelected.length; i++ ) {
                     params.append(`cuisine${i+1}`, this.cusineSelected[i]);
                 }
 
-                var request = {
+                //create request object
+                let request = {
                     params: params
                 }
 
+                //axios get call to URL
                 axios.get("http://127.0.0.1:8000/api/restaurants", request)
                     .then((response) => {
                         this.restaurants = response.data;
                     })
             },
 
+            //get imageURL path correct
             getImageURL(restaurant) {
                 return `http://127.0.0.1:8000/storage/${restaurant.restaurant_image}`;
             }
