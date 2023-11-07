@@ -4,7 +4,9 @@
     export default {
         data() {
             return {
-                clientToken: ""
+                clientToken: "",
+                dropinInstance: null,
+                showUI: true
             }
         },
 
@@ -32,10 +34,34 @@
                 braintree.dropin.create({
                 authorization: this.clientToken, 
                 container: '#dropin-container'
-                }, (error, dropinInstance) => {
-                    // Handle drop-in instance and errors here
+                }, (error, instance) => {
+                    if (error) {
+                        console.error(error);
+                    } else {
+                        this.dropinInstance = instance;
+                    }
                 });
-            }
+            },
+
+            submitPayment() {
+                if (this.dropinInstance) {
+                    const self = this;
+
+                    this.dropinInstance.requestPaymentMethod(function (err, payload) {
+                    axios.post('http://127.0.0.1:8000/api/checkout', {
+                        nonce: payload.nonce
+                    })
+                    .then(response => {
+                        self.showUI = !self.showUI;
+                        self.$router.push({name: 'home'});
+                    })
+                    .catch(error => {
+                        //console.log('Error');
+                        // Puoi gestire l'errore qui
+                    });
+                    });
+                }
+            },
         },
 
         mounted() {
@@ -45,14 +71,14 @@
 </script>
 
 <template>
-    <div id="dropin-container" style="display: flex;justify-content: center;align-items: center;"></div>
-    <div style="display: flex;justify-content: center;align-items: center; color: white">
-        <a id="submit-button" class="btn btn-sm btn-success">Submit payment</a>
-    </div>
+    <div>
+        <div class="container" v-show="showUI">
+                <div id="dropin-container"></div>
+                <button @click="submitPayment()" class="btn btn-primary">Submit Payment</button>
+        </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-    .braintree-form__notice-of-collection{
-        display: none;
-    }
+
 </style>
