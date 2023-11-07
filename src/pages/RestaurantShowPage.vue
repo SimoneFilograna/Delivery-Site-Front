@@ -19,7 +19,6 @@ export default {
         axios.get('http://127.0.0.1:8000/api/restaurants/'+this.$route.params.id)
         .then((resp)=>{
             this.restaurant = resp.data;
-            console.log(this.$route.params.id);
         }) .catch((e)=>{
             this.$router.push({name: "not-found"})
         }) 
@@ -32,15 +31,30 @@ export default {
     //function that receive data from card emit
     addItemToCart(element){
         this.cartItems.push(element);
+        localStorage.setItem('cartItems', JSON.stringify(this.cartItems))
     },
+
+    // add item to cart with icon
 
     addNewItem(element){
         this.cartItems.push(element);
         console.log(this.cartItems)
+        localStorage.setItem('cartItems', JSON.stringify(this.cartItems))
+    },
+
+    // remove item from crat with icon
+
+    removeItem(index){
+        this.cartItems.splice(index, 1);
+        console.log(this.cartItems)
+        localStorage.setItem('cartItems', JSON.stringify(this.cartItems))
     }
 
   },
   mounted() {
+    // Load items from localStorage on component mount 
+    this.cartItems = JSON.parse(localStorage.getItem('cartItems')) || []; 
+
     this.fetchData();
   },
 }
@@ -76,13 +90,19 @@ export default {
                 <h3>Carrello Ordini</h3>
                 <p class="border-bottom">Hai ordinato:</p>
 
-                <div class="itemCard d-flex justify-content-between" v-for="item in cartItems">
+                <div class="itemCard d-flex justify-content-between" v-for="item, index in cartItems">
                     <div class="d-flex align-items-center">
                         <p>{{ item.plate_name }}</p>
+
+                        <!-- add button cart -->
+
                         <button @click="addNewItem(item)">
                             <i class="fa-solid fa-plus"></i>
                         </button>
-                        <button>
+
+                        <!-- remove button cart -->
+
+                        <button @click="removeItem(index)">
                             <i class="fa-solid fa-minus"></i>
                         </button>
                     </div>
