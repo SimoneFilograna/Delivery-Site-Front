@@ -7,9 +7,16 @@ export default {
         }
     },
     methods: {
+
+        //obtain image from database with API call
         getPlateImageUrl(plate) {
             return `http://127.0.0.1:8000/storage/${plate.plate_image}`;
+        },
 
+
+        //function emit data to father RestaurantSgowPage
+        addToCartArray(){
+            this.$emit("addtoCart", this.Plate)
         }
     }
 }
@@ -23,13 +30,16 @@ export default {
             </div>
             <div class="col-md-8">
                 <div class="card-body">
+
+                    <form @submit.prevent="addToCartArray">
                     <h5 class="card-title">{{ Plate.plate_name }}</h5>
                     <p class="card-text">{{ Plate.description }}</p>
                     <p class="card-text"><small class="text-body-secondary">{{ Plate.ingredients }}</small></p>
-                    <p class="card-text">{{ Plate.price }}</p>
-                
+                    <p class="card-text">{{ Plate.price }}</p>              
 
                     <button class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
+
+                    </form>
                 </div>
             </div>
         </div>

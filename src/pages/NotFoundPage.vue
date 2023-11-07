@@ -4,4 +4,4 @@
     <h1>errore</h1>
 </template>
 
-<style></style>
+<style lang="scss" scoped></style>
