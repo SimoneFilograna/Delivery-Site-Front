@@ -146,6 +146,9 @@ export default {
 
                 </div>
 
+                <div class="text-center">
+                    <button class="btn btn-primary">Checkout</button>
+                </div>
             </div>
         </div>
     </div>
