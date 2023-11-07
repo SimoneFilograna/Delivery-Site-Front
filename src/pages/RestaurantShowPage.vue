@@ -32,7 +32,10 @@ export default {
 
         addNewItem(element = null) {
 
-            //find index cart item
+            if(this.cartItems.length !== 0 && this.cartItems[0].restaurant_id !== this.restaurant.id){
+                alert("attenzione il carrello non è vuoto")
+            } else {
+                //find index cart item
             const checkIndexArray = this.cartItems.findIndex(item => item.id === element.id);
             console.log(checkIndexArray)
 
@@ -55,6 +58,9 @@ export default {
 
             //save in localstorage
             localStorage.setItem('cartItems', JSON.stringify(this.cartItems))
+            }
+
+            
         },
 
         //remove entire cart
@@ -66,7 +72,7 @@ export default {
             localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
         },
 
-        // remove item from crat with icon
+        // remove single item from crat with icon
 
         reduceItem(index) {
             if (this.cartItems[index].quantity > 1) {
@@ -78,6 +84,13 @@ export default {
             console.log(this.cartItems)
             localStorage.setItem('cartItems', JSON.stringify(this.cartItems))
         },
+
+        // clearCartitems and set new Local Storage
+        clearCart(){
+            this.cartItems = {},
+            localStorage.clear();
+            console.log(this.cartItems)
+        }
 
 
     },
@@ -122,8 +135,8 @@ export default {
                 <h3>Carrello Ordini</h3>
                 <p class="border-bottom">Hai ordinato:</p>
 
+                
                 <div class="itemCard d-flex justify-content-between" v-for="item, index in cartItems">
-
 
                     <div class="d-flex align-items-center" v-if="item.restaurant_id == restaurant.id">
                         <p>{{ item.plate_name }}</p>
@@ -137,19 +150,30 @@ export default {
                         <!-- quantity-- -->
                         <p class="px-4">{{ item.quantity }}</p>
                         <!-- remove button cart -->
-
+                        
                         <button @click="reduceItem(index)">
                             <i class="fa-solid fa-minus"></i>
                         </button>
+                        <p>{{ item.price }} €</p>
                     </div>
-                    <p>{{ item.price }} €</p>
-
                 </div>
 
-                <div class="text-center">
+                <!-- checkout button -->
+                <div class="text-center" v-if="cartItems.length !== 0 && cartItems[0].restaurant_id === restaurant.id">
                     <button class="btn btn-primary">Checkout</button>
-                </div>
+                </div> 
+
+                <div v-if="cartItems.length !== 0 && cartItems[0].restaurant_id !== restaurant.id"> 
+                    <div class="border border-danger p-5"> 
+                       <p class="pb-4"> Attenzione il tuo carrello non è vuoto</p>
+                       <small>Cliccando qui cancellerai iul tuo carrello</small>
+                       <button class="btn btn-danger mt-4" @click="clearCart()">Svuota il carrello</button>
+
+                    </div>
+                </div> 
             </div>
+
+            
         </div>
     </div>
 </template>
