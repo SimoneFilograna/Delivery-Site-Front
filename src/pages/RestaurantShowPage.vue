@@ -48,13 +48,21 @@ export default {
         this.cartItems.splice(index, 1);
         console.log(this.cartItems)
         localStorage.setItem('cartItems', JSON.stringify(this.cartItems))
-    }
+    },
+
+    // clearCart(){
+    //     this.cartItems = {};
+    //     localStorage.setItem('cartItems', JSON.stringify(this.cartItems))
+    // }
+
 
   },
   mounted() {
+
     // Load items from localStorage on component mount 
     this.cartItems = JSON.parse(localStorage.getItem('cartItems')) || []; 
 
+    //load restaurant API Call
     this.fetchData();
   },
 }
@@ -91,7 +99,9 @@ export default {
                 <p class="border-bottom">Hai ordinato:</p>
 
                 <div class="itemCard d-flex justify-content-between" v-for="item, index in cartItems">
-                    <div class="d-flex align-items-center">
+
+
+                    <div class="d-flex align-items-center" v-if="item.restaurant_id == restaurant.id">
                         <p>{{ item.plate_name }}</p>
 
                         <!-- add button cart -->
@@ -107,6 +117,7 @@ export default {
                         </button>
                     </div>
                     <p>{{ item.price }} €</p>
+
                 </div>
 
             </div>
