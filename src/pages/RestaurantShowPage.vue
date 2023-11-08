@@ -11,6 +11,7 @@ export default {
         return {
             restaurant: {},
             cartItems: [],
+            totalPrice: [],
         };
     },
 
@@ -24,6 +25,7 @@ export default {
                     this.$router.push({ name: "not-found" })
                 })
         },
+
         //fetching img data from backend
         getRestaurantImageUrl(restaurant) {
             return `http://127.0.0.1:8000/storage/${restaurant.restaurant_image}`;
@@ -93,9 +95,24 @@ export default {
             console.log(this.cartItems)
         },
 
+        // single price for plate
+
         singlePlatePrice(a,b){
             return a * b
+        },
+
+        // total price
+
+        totalSum() {
+            let total = 0;
+            this.cartItems.forEach(plate => {
+                total += plate.quantity * plate.price;
+            });
+            return total;
         }
+
+
+
 
     },
     mounted() {
@@ -161,10 +178,21 @@ export default {
 
                         <p>{{ singlePlatePrice(item.price,item.quantity) }} €</p>
                     </div>
+
                 </div>
+
+                
 
                 <!-- checkout button -->
                 <div class="text-center" v-if="cartItems.length !== 0 && cartItems[0].restaurant_id === restaurant.id">
+
+                    <!-- total price -->
+                    <div>
+                        <p>Totale: {{ totalSum() }} €</p>
+                    </div>
+
+                    <!-- checkout button -->
+
                     <button class="btn btn-primary">Checkout</button>
                 </div> 
 
