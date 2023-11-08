@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import NotFoundPage from "./pages/NotFoundPage.vue";
 import RestaurantShowPage from "./pages/RestaurantShowPage.vue";
 import HomePage from "./pages/Home.vue";
+import Checkout from "./pages/Checkout.vue";
 
 const routes= [
     {
@@ -24,6 +25,11 @@ const routes= [
         component: NotFoundPage,
       },
 
+    {
+        path: "/checkout",
+        name: "checkout",
+        component: Checkout
+    }
 ]
 
 const router= createRouter ({
