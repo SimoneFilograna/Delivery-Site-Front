@@ -11,7 +11,6 @@ export default {
         return {
             restaurant: {},
             cartItems: [],
-            totalPrice: [],
         };
     },
 
