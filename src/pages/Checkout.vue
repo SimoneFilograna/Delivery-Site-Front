@@ -4,9 +4,13 @@
     export default {
         data() {
             return {
+                cartItems: [],
+                totalPrice: {},
+
                 clientToken: "",
                 dropinInstance: null,
                 showUI: true,
+
                 // ... Altre variabili esistenti
                 customer_name: "",
                 customer_lastname: "",
@@ -15,11 +19,11 @@
                 customer_phone: "",
 
                 formErrors: {
-                customer_name: "",
-                customer_lastname: "",
-                customer_address: "",
-                customer_email: "",
-                customer_phone: ""
+                    customer_name: "",
+                    customer_lastname: "",
+                    customer_address: "",
+                    customer_email: "",
+                    customer_phone: ""
                 }
             }
         },
@@ -124,10 +128,22 @@
                     });
                 }
             },
+
+            // total price
+            totalSum() {
+                let total = 0;
+                this.cartItems.forEach(plate => {
+                    total += plate.quantity * plate.price;
+                });
+                this.totalPrice=total.toFixed(2);
+                return total.toFixed(2);
+            },
         },
 
         mounted() {
             this.fetchClientToken();
+            this.cartItems = JSON.parse(localStorage.getItem('cartItems'));
+            this.totalSum();
         }
     }
 </script>

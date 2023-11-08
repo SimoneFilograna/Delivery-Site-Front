@@ -18,18 +18,19 @@ const routes= [
         name:"restaurant.show",
         component: RestaurantShowPage,        
     },
-
-    {
-        path: "/:pathMatch(.*)*",
-        name: "not-found",
-        component: NotFoundPage,
-      },
-
+    
     {
         path: "/checkout",
         name: "checkout",
         component: Checkout
-    }
+    },
+    
+    {
+        path: "/:pathMatch(.*)*",
+        name: "not-found",
+        component: NotFoundPage,
+    },
+
 ]
 
 const router= createRouter ({

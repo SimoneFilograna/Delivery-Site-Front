@@ -194,7 +194,7 @@ export default {
 
                     <!-- checkout button -->
 
-                    <button class="btn btn-primary">Checkout</button>
+                    <RouterLink :to="{name: 'checkout'}" class="btn btn-primary">Checkout</RouterLink>
                 </div> 
 
                 <div v-if="cartItems.length !== 0 && cartItems[0].restaurant_id !== restaurant.id"> 
