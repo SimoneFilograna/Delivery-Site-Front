@@ -108,8 +108,8 @@ export default {
             this.cartItems.forEach(plate => {
                 total += plate.quantity * plate.price;
             });
-            this.totalPrice=total;
-            return total;
+            this.totalPrice=total.toFixed(2);
+            return total.toFixed(2);
         }
 
 
