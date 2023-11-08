@@ -13,6 +13,7 @@ export default {
             cartItems: [],
         };
     },
+
     methods: {
         //fetching restaurant data from api
         fetchData() {
@@ -87,7 +88,7 @@ export default {
 
         // clearCartitems and set new Local Storage
         clearCart(){
-            this.cartItems = {},
+            this.cartItems.splice(0),
             localStorage.clear();
             console.log(this.cartItems)
         }
@@ -107,8 +108,6 @@ export default {
 </script>
 
 <template>
-    <h1>ciao</h1>
-
 
     <div class="container">
         <div class="row">
@@ -167,7 +166,10 @@ export default {
                     <div class="border border-danger p-5"> 
                        <p class="pb-4"> Attenzione il tuo carrello non è vuoto</p>
                        <small>Cliccando qui cancellerai iul tuo carrello</small>
-                       <button class="btn btn-danger mt-4" @click="clearCart()">Svuota il carrello</button>
+                       
+                       <div>
+                           <button class="btn btn-danger mt-4" @click="clearCart()">Svuota il carrello</button>
+                       </div>
 
                     </div>
                 </div> 
