@@ -91,8 +91,11 @@ export default {
             this.cartItems.splice(0),
             localStorage.clear();
             console.log(this.cartItems)
-        }
+        },
 
+        singlePlatePrice(a,b){
+            return a * b
+        }
 
     },
     mounted() {
@@ -140,20 +143,23 @@ export default {
                     <div class="d-flex align-items-center" v-if="item.restaurant_id == restaurant.id">
                         <p>{{ item.plate_name }}</p>
 
-                        <!-- add button cart -->
-
-                        <button @click="addNewItem(item)">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-
-                        <!-- quantity-- -->
-                        <p class="px-4">{{ item.quantity }}</p>
+                        
                         <!-- remove button cart -->
                         
                         <button @click="reduceItem(index)">
                             <i class="fa-solid fa-minus"></i>
                         </button>
-                        <p>{{ item.price }} €</p>
+                        
+                        <!-- quantity-- -->
+                        <p class="px-4">{{ item.quantity }}</p>
+                        
+                        <!-- add button cart -->
+
+                        <button @click="addNewItem(item)">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>                                         
+
+                        <p>{{ singlePlatePrice(item.price,item.quantity) }} €</p>
                     </div>
                 </div>
 
