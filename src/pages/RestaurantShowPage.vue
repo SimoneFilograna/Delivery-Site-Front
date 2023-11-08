@@ -11,6 +11,7 @@ export default {
         return {
             restaurant: {},
             cartItems: [],
+            totalPrice: {},
         };
     },
 
@@ -53,7 +54,7 @@ export default {
                     plate_name: element.plate_name,
                     price: element.price,
                     quantity: 1,
-                    restaurant_id: element.restaurant_id
+                    restaurant_id: element.restaurant_id,
                 })
                 console.log(this.cartItems)
             }
@@ -107,6 +108,7 @@ export default {
             this.cartItems.forEach(plate => {
                 total += plate.quantity * plate.price;
             });
+            this.totalPrice=total;
             return total;
         }
 
