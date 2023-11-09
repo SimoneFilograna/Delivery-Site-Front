@@ -30,6 +30,15 @@ const routes= [
         path: "/success",
         name: "success",
         component: Success,
+        beforeEnter: (to, from, next) =>{
+            const savedCart = JSON.parse(localStorage.getItem('cartItems'))
+            console.log(savedCart)
+            if (savedCart == null || savedCart.length == 0) {
+                next({name: 'home'})
+            } else {
+                next()
+            }
+        }
     },
     
     {
