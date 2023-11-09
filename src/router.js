@@ -24,12 +24,7 @@ const routes= [
         path: "/checkout",
         name: "checkout",
         component: Checkout,
-    },
 
-    {
-        path: "/success",
-        name: "success",
-        component: Success,
         beforeEnter: (to, from, next) =>{
             const savedCart = JSON.parse(localStorage.getItem('cartItems'))
             console.log(savedCart)
@@ -39,6 +34,13 @@ const routes= [
                 next()
             }
         }
+    },
+
+    {
+        path: "/success",
+        name: "success",
+        component: Success,
+        
     },
     
     {
