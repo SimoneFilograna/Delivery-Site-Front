@@ -119,7 +119,7 @@
                     })
                     .then(response => {
                         self.showUI = !self.showUI;
-                        self.$router.push({name: 'home'});
+                        self.$router.push({name: 'success'});
                     })
                     .catch(error => {
                         //console.log('Error');
@@ -149,23 +149,15 @@
 </script>
 
 <template>
-    <div>
-        <div class="container mt-1" v-show="showUI">
-            <h1>Inserisci coordinate di pagamento</h1>
-            <div id="dropin-container"></div>
-            <button @click="submitPayment()" class="btn btn-primary">Conferma pagamento</button>
-        </div>
-  </div>
-
-
+    <!-- Delivery customer info -->
     <div class="container">
         <h1 class="my-5">Dati per la Spedizione</h1>
         <!-- Name  -->
         <div class="form-group pe-1 col-6 mt-3">
             <label>Nome*</label>
-            <div>
-                <input class="form-control" type="text" name="customer_name" id="customer_name" v-model="customer_name"/>
-                <span class="error-text">{{ formErrors.customer_name }}</span>
+            <input class="form-control" type="text" name="customer_name" id="customer_name" v-model="customer_name"/>
+            <div class="alert alert-danger my-2" v-if="formErrors.customer_name">
+                {{ formErrors.customer_name }}
             </div>
         </div>
 
@@ -174,7 +166,9 @@
             <label>Cognome*</label>
             <div>
                 <input class="form-control" type="text" name="customer_lastname" id="customer_lastname" v-model="customer_lastname"/>
-                <span class="error-text">{{ formErrors.customer_lastname }}</span>
+                <div class="alert alert-danger my-2" v-if="formErrors.customer_lastname">
+                {{ formErrors.customer_lastname }}
+                </div>
             </div>
         </div>
 
@@ -183,7 +177,9 @@
             <label>Indirizzo spedizione*</label>
             <div>
                 <input class="form-control" type="text" name="customer_address" id="customer_address" v-model="customer_address"/>
-                <span class="error-text">{{ formErrors.customer_address }}</span>
+                <div class="alert alert-danger my-2" v-if="formErrors.customer_address">
+                {{ formErrors.customer_address }}
+                </div>
             </div>
         </div>
 
@@ -192,7 +188,9 @@
             <label>Email*</label>
             <div>
                 <input class="form-control" type="text" name="customer_email" id="customer_email" v-model="customer_email"/>
-                <span class="error-text">{{ formErrors.customer_email }}</span>
+                <div class="alert alert-danger my-2" v-if="formErrors.customer_email">
+                {{ formErrors.customer_email }}
+                </div>
             </div>
         </div>
 
@@ -201,9 +199,18 @@
             <label>Recapito telefonico*</label>
             <div>
                 <input class="form-control" type="text" name="customer_phone" id="customer_phone" v-model="customer_phone"/>
-                <span class="error-text">{{ formErrors.customer_phone }}</span>
+                <div class="alert alert-danger my-2" v-if="formErrors.customer_phone">
+                {{ formErrors.customer_phone }}
+                </div>
             </div>
         </div>
+    </div>
+
+    <!-- Braintree Form -->
+    <div class="container mt-3" v-show="showUI">
+        <h1>Inserisci coordinate di pagamento</h1>
+        <div id="dropin-container"></div>
+        <button @click="submitPayment()" class="btn btn-primary">Conferma pagamento</button>
     </div>
 
     
@@ -211,9 +218,5 @@
 </template>
 
 <style lang="scss" scoped>
-    .error-text {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-}
+    
 </style>

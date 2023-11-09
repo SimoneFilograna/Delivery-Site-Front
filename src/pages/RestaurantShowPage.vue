@@ -194,17 +194,17 @@ export default {
 
                     <!-- checkout button -->
 
-                    <RouterLink :to="{name: 'checkout'}" class="btn btn-primary">Checkout</RouterLink>
+                    <RouterLink :to="{name: 'checkout'}" class="btn btn-primary" v-on:click.prevent="cartItems.length === 0 ? null : showError()">Checkout</RouterLink>
                 </div> 
 
                 <div v-if="cartItems.length !== 0 && cartItems[0].restaurant_id !== restaurant.id"> 
                     <div class="border border-danger p-5"> 
-                       <p class="pb-4"> Attenzione il tuo carrello non è vuoto</p>
-                       <small>Cliccando qui cancellerai iul tuo carrello</small>
-                       
-                       <div>
-                           <button class="btn btn-danger mt-4" @click="clearCart()">Svuota il carrello</button>
-                       </div>
+                        <p class="pb-4"> Attenzione il tuo carrello non è vuoto</p>
+                        <small>Cliccando qui cancellerai iul tuo carrello</small>
+                    
+                        <div>
+                            <button class="btn btn-danger mt-4" @click="clearCart()">Svuota il carrello</button>
+                        </div>
 
                     </div>
                 </div> 

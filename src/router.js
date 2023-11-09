@@ -5,6 +5,7 @@ import NotFoundPage from "./pages/NotFoundPage.vue";
 import RestaurantShowPage from "./pages/RestaurantShowPage.vue";
 import HomePage from "./pages/Home.vue";
 import Checkout from "./pages/Checkout.vue";
+import Success from "./pages/Success.vue";
 
 const routes= [
     {
@@ -22,7 +23,13 @@ const routes= [
     {
         path: "/checkout",
         name: "checkout",
-        component: Checkout
+        component: Checkout,
+    },
+
+    {
+        path: "/success",
+        name: "success",
+        component: Success,
     },
     
     {
