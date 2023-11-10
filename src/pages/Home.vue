@@ -100,11 +100,11 @@ export default {
 <template>
     <div class="container-fluid p-0 overflow-x-hidden">
         <div class="row lateralSpacing ">
-            <div class="col-2">
+            <div class="left-side d-none d-sm-block col-3 p-0"><!--da rivedere-->>
                 <div class="filterTitle">Filtro Cucine</div>
 
-                <div class="list-group-item pt-3">
-                    <div class="form-check mb-2" v-for="cuisine in cuisines" :key="cuisine.id">
+                <div class="list-group-item pt-3 d-flex flex-column">
+                    <div class="form-check mb-2 " v-for="cuisine in cuisines" :key="cuisine.id">
                         <input class="form-check-input" type="checkbox" @click="filterData($event)"
                             :value="cuisine.cuisine_name" :id="cuisine.id">
                         <label class="form-check-label" :for="cuisine.id">
@@ -115,19 +115,19 @@ export default {
 
             </div>
 
-            <div class="col-10">
+            <div class="col col-md-9">
                 <div class="filterTitle mb-4">Ristoranti che consegnano a Milano</div>
 
                 <div class="container-fluid p-0">
-                    <div class="row">
-                        <div class="col-3 mb-4" v-for="restaurant in restaurants" :key="restaurant.id">
+                    <div class="row text-center justify-content-around">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-2 d-flex" v-for="restaurant in restaurants" :key="restaurant.id">
                             
                             <!-- link to ShowRestaurantPage -->
                             
                             <router-link :to="{name:'restaurant.show', params:{id:restaurant.id}}">
 
                                 <div class="card h-100">
-                                    <img :src="getImageURL(restaurant)" class="card-img-top" alt="...">
+                                    <img :src="getImageURL(restaurant)" class="card-img-top h-75" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ restaurant.restaurant_name }}</h5>
                                         <p class="card-text" v-for="cuisine in restaurant.cuisines">
@@ -147,6 +147,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
 .lateralSpacing {
     padding: 0px 64px;
 }
@@ -166,5 +167,13 @@ export default {
 
 .form-check .form-check-input {
     margin-left: 0;
+}
+.left-side{
+    min-width: 153px;//sotto questa soglia si spacca il layout
+}
+
+.card-img-top{
+    object-position: center;
+    object-fit: cover;
 }
 </style>

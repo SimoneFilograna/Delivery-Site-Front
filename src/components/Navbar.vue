@@ -5,10 +5,10 @@
 </script>
 
 <template>
-    <nav class="d-flex align-items-center justify-content-between">
+    <nav class="container-fluid d-flex align-items-center justify-content-between">
         <RouterLink :to="{name: 'home'}" class="text-decoration-none logo_text">DeliveBoo</RouterLink>
 
-        <form class="h-100 d-flex">
+        <form class="h-100 d-flex d-none d-md-flex">
         <div class="searchContainer">
                 <img src="/search-icon.png" alt="" class="searchIcon">
                 <input type="text" placeholder="Cerca Ristoranti" class="searchCustom">
@@ -24,6 +24,7 @@
 </template>
 
 <style lang="scss" scoped>
+
   .searchContainer {
     display: flex;
     background-color: #f5f5f5;
@@ -31,14 +32,14 @@
     border-radius: 4px;
     gap: 8px;
     padding: 8px 12px;
-    width: 650px;
+    width: 40vw;
     margin: 13px 0px;
   }
 
   .searchCustom{
     background-color: transparent;
     border: 0;
-    width: 650px;
+  
   }
 
   .searchIcon {
