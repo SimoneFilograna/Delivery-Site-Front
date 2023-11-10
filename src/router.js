@@ -27,7 +27,7 @@ const routes= [
 
         beforeEnter: (to, from, next) =>{
             const savedCart = JSON.parse(localStorage.getItem('cartItems'))
-            console.log(savedCart)
+            // console.log(savedCart)
             if (savedCart == null || savedCart.length == 0) {
                 next({name: 'home'})
             } else {

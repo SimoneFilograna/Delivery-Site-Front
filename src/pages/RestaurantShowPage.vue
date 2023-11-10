@@ -109,6 +109,8 @@ export default {
                 total += plate.quantity * plate.price;
             });
             this.totalPrice=total.toFixed(2);
+            localStorage.setItem('totalPrice', JSON.stringify(this.totalPrice));
+            localStorage.setItem('restaurant_name', JSON.stringify(this.restaurant.restaurant_name));
             return total.toFixed(2);
         }
 
