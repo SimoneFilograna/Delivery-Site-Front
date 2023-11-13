@@ -122,7 +122,7 @@ export default {
 <template>
     <div class="container-fluid p-0 overflow-x-hidden">
         <div class="row lateralSpacing ">
-            <div class="left-side d-none d-sm-block col-3 p-0"><!--da rivedere-->>
+            <div class="left-side d-none d-sm-block col-3 p-0"><!--da rivedere-->
                 <div class="filterTitle">Filtro Cucine</div>
 
                 <div class="list-group-item pt-3 d-flex flex-column">
@@ -181,6 +181,11 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+*{
+    border: 1px dashed red;
+}
+
 .lateralSpacing {
     padding: 0px 64px;
 }
