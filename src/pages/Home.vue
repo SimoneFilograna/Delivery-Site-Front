@@ -9,13 +9,34 @@ export default {
             // List of cuisines types
             cuisines: [],
             // List of the selected cuisines by client
-            cusineSelected: []
+            cusineSelected: [],
+            // Name of restaurant to search
+            searchText:'',
         }
     },
 
     methods: {
         //GET API call that retrives the list of restaurants
-        fetchResturants() {
+        fetchRestaurants() {
+            //Call for restaurants name to API
+            if (this.searchText) {
+                
+                console.log(this.searchText);
+
+                axios.get('http://127.0.0.1:8000/api/restaurants', {
+                    // headers: {
+                    //     "Access-Control-Allow-Origin": "*"
+                    // },
+                    params: {
+                        restaurant_name:this.searchText,
+                    }
+                }).then((response) => {
+                    // save datas in the restaurant array
+                    this.restaurants = response.data;
+
+                })
+            }
+            else{
             //axios get call to URL
             axios.get("http://127.0.0.1:8000/api/restaurants", {
                 headers: {
@@ -25,6 +46,7 @@ export default {
                 // save datas in the restaurant array
                 this.restaurants = response.data;
             })
+        }   
         },
 
         //GET API call that retrives the list of cuisines
@@ -91,7 +113,7 @@ export default {
     },
 
     mounted() {
-        this.fetchResturants();
+        this.fetchRestaurants();
         this.fetchCuisines();
     }
 }
@@ -116,15 +138,26 @@ export default {
             </div>
 
             <div class="col col-md-9">
+                <form action="">
+
+                </form>
                 <div class="filterTitle mb-4">Ristoranti che consegnano a Milano</div>
+
+                <!-- searchbar for restaurants -->
+<div>
+    <input v-model="searchText" @keyup="fetchRestaurants" class="form-control" name="searchText" id="searchText" placeholder="Cerca ristorante">
+
+
+</div>
 
                 <div class="container-fluid p-0">
                     <div class="row text-center justify-content-around">
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-2 d-flex" v-for="restaurant in restaurants" :key="restaurant.id">
-                            
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-2 d-flex" v-for="restaurant in restaurants"
+                            :key="restaurant.id">
+
                             <!-- link to ShowRestaurantPage -->
-                            
-                            <router-link :to="{name:'restaurant.show', params:{id:restaurant.id}}">
+
+                            <router-link :to="{ name: 'restaurant.show', params: { id: restaurant.id } }">
 
                                 <div class="card h-100">
                                     <img :src="getImageURL(restaurant)" class="card-img-top h-75" alt="...">
@@ -147,7 +180,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-
 .lateralSpacing {
     padding: 0px 64px;
 }
@@ -168,11 +200,12 @@ export default {
 .form-check .form-check-input {
     margin-left: 0;
 }
-.left-side{
-    min-width: 153px;//sotto questa soglia si spacca il layout
+
+.left-side {
+    min-width: 153px; //sotto questa soglia si spacca il layout
 }
 
-.card-img-top{
+.card-img-top {
     object-position: center;
     object-fit: cover;
 }
