@@ -11,7 +11,7 @@ export default {
             // List of the selected cuisines by client
             cusineSelected: [],
             // Name of restaurant to search
-            searchText:'',
+            searchText: '',
         }
     },
 
@@ -20,7 +20,7 @@ export default {
         fetchRestaurants() {
             //Call for restaurants name to API
             if (this.searchText) {
-                
+
                 console.log(this.searchText);
 
                 axios.get('http://127.0.0.1:8000/api/restaurants', {
@@ -28,7 +28,7 @@ export default {
                     //     "Access-Control-Allow-Origin": "*"
                     // },
                     params: {
-                        restaurant_name:this.searchText,
+                        restaurant_name: this.searchText,
                     }
                 }).then((response) => {
                     // save datas in the restaurant array
@@ -36,17 +36,17 @@ export default {
 
                 })
             }
-            else{
-            //axios get call to URL
-            axios.get("http://127.0.0.1:8000/api/restaurants", {
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                }
-            }).then((response) => {
-                // save datas in the restaurant array
-                this.restaurants = response.data;
-            })
-        }   
+            else {
+                //axios get call to URL
+                axios.get("http://127.0.0.1:8000/api/restaurants", {
+                    headers: {
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                }).then((response) => {
+                    // save datas in the restaurant array
+                    this.restaurants = response.data;
+                })
+            }
         },
 
         //GET API call that retrives the list of cuisines
@@ -144,11 +144,12 @@ export default {
                 <div class="filterTitle mb-4">Ristoranti che consegnano a Milano</div>
 
                 <!-- searchbar for restaurants -->
-<div>
-    <input v-model="searchText" @keyup="fetchRestaurants" class="form-control" name="searchText" id="searchText" placeholder="Cerca ristorante">
+                <div>
+                    <input v-model="searchText" @keyup="fetchRestaurants" class="form-control" name="searchText"
+                        id="searchText" placeholder="Cerca ristorante">
 
 
-</div>
+                </div>
 
                 <div class="container-fluid p-0">
                     <div class="row text-center justify-content-around">
