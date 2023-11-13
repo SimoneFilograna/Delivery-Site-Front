@@ -183,7 +183,7 @@ export default {
 <style lang="scss" scoped>
 
 *{
-    border: 1px dashed red;
+    //border: 1px dashed red;
 }
 
 .lateralSpacing {
