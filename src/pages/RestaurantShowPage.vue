@@ -131,86 +131,119 @@ export default {
 </script>
 
 <template>
-
+    <div class=" container-fluid hero-image">
+        <img src="/public/img/showrestaurant-jam.png" class="top-banner" alt="">
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-9">
-                <h1>{{ restaurant.restaurant_name }}</h1>
-                <img :src="getRestaurantImageUrl(restaurant)" class="card-img-top" />
-                <p>{{ restaurant.restaurant_phone }}</p>
-                <div class="plates-container">
+
+                <!-- restaurant info -->
+
+                <div class="row flex-column align-items-center flex-md-row gap-2">
+
+                    <div class="col text-center ">
+                        <h1 class="display-2">{{restaurant.restaurant_name }}</h1>
+                        <p class="mt-2">Tel:{{ restaurant.restaurant_phone }}</p>
+                        <p>Via: {{ restaurant.restaurant_address }}</p>
+                        <p>P.IVA: {{ restaurant.vat_number }}</p>
+                        
+                    </div>
+                </div>
+                <div class="plates-container mt-5">
                     <div class="row">
                         <div class="col-12" v-for="plate in restaurant.plates">
 
-                            <!-- @addcart receive emit from son platecard -->
-                            <PlateCard :Plate="plate" @addtoCart="addNewItem" />
+                            <div class="box">
+                                <!-- @addcart receive emit from son platecard -->
+                                <PlateCard :Plate="plate" @addtoCart="addNewItem" />
+                            </div>
+
                         </div>
 
                     </div>
                 </div>
 
-            </div>
+                <!-- canvas right -->
 
-            <!-- Shopping Cart -->
-            <div class="col-12 col-md-3 shopping-cart border rounded-3">
-
-                <h3>Carrello Ordini</h3>
-                <p class="border-bottom">Hai ordinato:</p>
-
+                <button class="btn special" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="fa-solid fa-cart-plus"></i></button>
                 
-                <div class="itemCard d-flex justify-content-between" v-for="item, index in cartItems">
+                <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Il tuo carrello</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
 
-                    <div class="d-flex align-items-center" v-if="item.restaurant_id == restaurant.id">
-                        <p>{{ item.plate_name }}</p>
+                            <!-- Shopping Cart -->
+                        <div class="shopping-cart text-white d-flex flex-column">
+                        
+                            <p class="order-title p-3">Hai ordinato:</p>
 
                         
-                        <!-- remove button cart -->
-                        
-                        <button @click="reduceItem(index)">
-                            <i class="fa-solid fa-minus"></i>
-                        </button>
-                        
-                        <!-- quantity-- -->
-                        <p class="px-4">{{ item.quantity }}</p>
-                        
-                        <!-- add button cart -->
+                            <div class="itemCard d-flex justify-content-between" v-for="item, index in cartItems">
 
-                        <button @click="addNewItem(item)">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>                                         
+                                <div class="d-flex align-items-baseline justify-content-between gap-3" v-if="item.restaurant_id == restaurant.id">
+                                    <p class="plate_name">{{ item.plate_name }}</p>
 
-                        <p>{{ singlePlatePrice(item.price,item.quantity) }} €</p>
+                                    <div class="d-flex align-items-center interaction">
+                                        <!-- remove button cart -->
+                                        <button class="cart-button" @click="reduceItem(index)">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </button>
+                                    
+                                        <!-- quantity-- -->
+                                        <p class="px-4 pt-1">{{ item.quantity }}</p>
+                                    
+                                        <!-- add button cart -->
+    
+                                        <button  class="cart-button" @click="addNewItem(item)">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>                                         
+                                    </div>
+
+                                    <p class="price">{{ singlePlatePrice(item.price, item.quantity) }} €</p>
+                                </div>
+
+                            </div>
+
+                        
+
+                            <!-- checkout button -->
+                            <div class="text-center mt-auto" v-if="cartItems.length !== 0 && cartItems[0].restaurant_id === restaurant.id">
+
+                                <!-- total price -->
+                                <div class="d-flex justify-content-between">
+                                    <p>Totale:</p>
+                                    <p>{{ totalSum() }} €</p>
+                                </div>
+
+                                <!-- checkout button -->
+
+                                <RouterLink :to="{ name: 'checkout' }" class="btn my-button" v-on:click.prevent="cartItems.length === 0 ? null : showError()">Checkout</RouterLink>
+                            </div> 
+
+                            <div v-if="cartItems.length !== 0 && cartItems[0].restaurant_id !== restaurant.id"> 
+                                <div class="full-cart p-5"> 
+                                    <p class="pb-4"> Attenzione il tuo carrello non è vuoto</p>
+                                    <small>Cliccando qui cancellerai iul tuo carrello</small>
+                            
+                                    <div class="text-center">
+                                        <button class="btn alert-button mt-4" @click="clearCart()">Svuota il carrello</button>
+                                    </div>
+
+                                </div>
+                            </div> 
+                        </div>
                     </div>
-
                 </div>
 
+
+
+
                 
-
-                <!-- checkout button -->
-                <div class="text-center" v-if="cartItems.length !== 0 && cartItems[0].restaurant_id === restaurant.id">
-
-                    <!-- total price -->
-                    <div>
-                        <p>Totale: {{ totalSum() }} €</p>
-                    </div>
-
-                    <!-- checkout button -->
-
-                    <RouterLink :to="{name: 'checkout'}" class="btn btn-primary" v-on:click.prevent="cartItems.length === 0 ? null : showError()">Checkout</RouterLink>
-                </div> 
-
-                <div v-if="cartItems.length !== 0 && cartItems[0].restaurant_id !== restaurant.id"> 
-                    <div class="border border-danger p-5"> 
-                        <p class="pb-4"> Attenzione il tuo carrello non è vuoto</p>
-                        <small>Cliccando qui cancellerai iul tuo carrello</small>
-                    
-                        <div>
-                            <button class="btn btn-danger mt-4" @click="clearCart()">Svuota il carrello</button>
-                        </div>
-
-                    </div>
-                </div> 
             </div>
+
 
             
         </div>
@@ -218,12 +251,101 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-/*{
-    border: 1px red dashed;
-    min-height: 20px;
-}*/
+@use "../styles/partials/variables";
 
-.card-img-top {
-    max-width: 30vw;
+.top-banner{
+    height: 250px;
+    width: 100%;
+    filter: brightness(50%);
+    margin-bottom: 3rem;
+    object-fit: cover;
+    object-position: center;
 }
+
+// canvas style
+
+.offcanvas-end{
+    background-color: variables.$bg_color;
+
+    .offcanvas-title{
+        color: white;
+    }
+
+    .btn-close{
+        color: white;
+        background-color: transparent;
+        border: 1px solid white;
+    }
+    .shopping-cart{
+        height: 100%;
+        border: 1px solid variables.$gold_text;
+        padding: 1.5rem;
+    
+        .order-title{
+            border-bottom: 1px solid variables.$gold_text;;
+        }
+
+        .my-button{
+        background-color: variables.$gold_text;
+        border-radius: 0;
+        padding: .1rem 1.5rem;
+        font-weight: 600;
+        font-size: 1.2rem;
+
+        &:hover{
+        background-color: variables.$bg_color;;
+        border-color: variables.$gold-text;
+        color: variables.$gold-text;
+            }
+        }
+
+        .plate_name,
+        .interaction,
+        .price{
+            flex-basis: 33.33%;
+        }
+        .cart-button{
+            background-color: variables.$gold_text;
+
+            &:hover{
+                background-color: variables.$bg_color;;
+                border-color: variables.$gold-text;
+                color: variables.$gold-text;
+            }
+        }
+
+        .full-cart{
+            border: 1px solid rgb(245, 101, 5);
+            background-color: rgba(255, 221, 159, 0.788);
+
+            .alert-button{
+                background-color: rgb(245, 101, 5);
+                color: white;
+
+            &:hover{
+                background-color: variables.$bg_color;
+                color: rgb(245, 101, 5);
+                border: 1px solid rgb(245, 101, 5)
+            }
+            }
+        }
+        
+    }
+}
+
+.special{
+    background-color: variables.$gold_text;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    position: fixed;
+    bottom: 8%;
+    right: 5%;
+    &:hover{
+        background-color: variables.$bg_color;;
+        border-color: variables.$gold-text;
+        color: variables.$gold-text;
+        }
+}
+
+
 </style>
