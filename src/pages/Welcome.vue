@@ -2,17 +2,16 @@
 <template>
 
     <div class="container jumbotron mt-5">
-        <div class="row">
-            <div class="col text-light">
-                <h1 class="display-2 fw-bold fst-italic text-center">Always, anywhere, whenever you want.</h1>
+        <div class="col text-light">
+            <h2 class="display-2 fw-bold fst-italic text-center">Always, anywhere, whenever <span class="d-md-none">you want.</span><br><span class="d-md-inline" > you want</span> </h2>
+        </div>
+        <div class="jumbo-main row justify-content-md-center mt-5 mt-md-0 px-lg-5">
+            <div class="col-12 col-md-8 mb-3 d-md-flex align-items-sm-center gap-md-3">
+                <div class="img-container order-md-last mb-5">
+                    <img src="/public/img/hero-1.png" alt="" class="pasta-img">
+                </div>
+                <p class="text-center mt-3 text-white-50 lh-lg">Delizia culinaria a portata di click: gustati i sapori autentici sempre ovunque, quando vuoi. Il tuo piacere a domicilio con un semplice click!</p>
             </div>
-            <div class="col-12 my-3 d-md-flex">
-                <img src="/public/img/hero-1.png" alt="" class="w-100">
-                <p class="text-center mt-3 text-white-50">Delizia culinaria a portata di click: gustati i sapori autentici sempre ovunque, quando vuoi. Il tuo piacere a domicilio con un semplice click!</p>
-            </div>
-            <!-- <div class="col text-center mt-3 text-white-50">
-                <p class="text-center mt-3 text-white-50">Delizia culinaria a portata di click: gustati i sapori autentici sempre ovunque, quando vuoi. Il tuo piacere a domicilio con un semplice click!</p>
-            </div> -->
         </div>
         <div class="restaurant-button text-center mt-4">
             <RouterLink :to="{name: 'home'}" class="btn my-button">Scopri i Ristoranti</RouterLink>
@@ -86,7 +85,21 @@
 
     &:hover a{
         color: variables.$gold-text;
+        }   
     }
+
+    .jumbo-main{
+
+        .pasta-img{
+            width: 100%;
     
+        @media screen and (min-width: 768px){
+            width: 200%;
+        }
+
+    @media screen and (min-width: 992px){
+        margin-top: -25%;
+            }
+        }
     }
 </style>
