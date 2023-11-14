@@ -12,7 +12,7 @@
   <div class="wrapper">
     <NavbarComponent></NavbarComponent>
 
-    <Router-view class="d-flex flex-column overflow-auto"></Router-view>
+    <Router-view></Router-view>
   </div>
 </template>
 

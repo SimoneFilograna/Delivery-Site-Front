@@ -1,3 +1,20 @@
 @import "bootstrap";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
-@import "./partials/variables"
+@import "./partials/variables";
+
+::-webkit-scrollbar {
+    background-color: rgb(25, 19, 21);
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track{
+    height: 8px;
+    width: 8px;
+    background-color: rgb(17, 21, 23);
+}
+::-webkit-scrollbar-thumb{
+    border: 1px solid rgb(45, 45, 45);
+    background-color: $gold_text;
+    border-radius: 5px;
+
+}

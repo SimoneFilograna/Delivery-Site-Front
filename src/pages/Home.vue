@@ -117,19 +117,20 @@ export default {
         this.fetchCuisines();
     }
 }
+
 </script>
 
 <template>
-    <div class="container-fluid p-5">
-        <div class="row lateralSpacing ">
-            <div class="left-side d-none d-sm-flex flex-column col-1 p-0"><!--da rivedere-->
+    <div class="container-fluid  p-5">
+        <div class="row d-flex flex-column flex-shrink-0 ">
+            <div class="check-select d-flex flex-column">
                 <h5 class="filterTitle text-center gold-text">Filtro Cucine</h5>
 
-                <div class="list-group-item pt-3 d-flex flex-column">
-                    <div class="form-check m-2 " v-for="cuisine in cuisines" :key="cuisine.id">
+                <div class="check-select d-flex flex-grow-1 overflow-auto">
+                    <div class="p-2 mx-3 d-flex " v-for="cuisine in cuisines" :key="cuisine.id">
                         <input class="form-check-input" type="checkbox" @click="filterData($event)"
                             :value="cuisine.cuisine_name" :id="cuisine.id">
-                        <label class="form-check-label text-white" :for="cuisine.id">
+                        <label class="form-check-label text-white mx-2" :for="cuisine.id">
                             {{ cuisine.cuisine_name }}
                         </label>
                     </div>
@@ -137,34 +138,39 @@ export default {
 
             </div>
 
-            <div class="col">
-                <form action="">
+            <div class="scrollable">
 
-                </form>
-                <h2 class="filterTitle mb-4 gold-text">Ristoranti che consegnano a Boolean City</h2>
+                <div class="d-flex flex-column px-4 flex-shrink-1">
 
-                <!-- searchbar for restaurants -->
-                <div>
-                    <input v-model="searchText" @keyup="fetchRestaurants" class="form-control" name="searchText"
-                        id="searchText" placeholder="Cerca ristorante">
+                    <h2 class="filterTitle mb-4 text-center gold-text">Ristoranti che consegnano a Boolean City</h2>
+                    <!-- searchbar for restaurants -->
+                    <form>
+                        <input v-model="searchText" @keyup="fetchRestaurants" class="form-control" name="searchText"
+                            id="searchText" placeholder="Cerca ristorante">
 
+                    </form>
 
                 </div>
 
-                
-                    <div class="row text-center justify-content-around">
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-2 d-flex" v-for="restaurant in restaurants"
-                            :key="restaurant.id">
 
+
+
+                <div class="scroll-side my-3">
+                    
+                    <div class="d-flex flex-wrap ">
+
+                        <div class="v-card d-flex col-12 col-sm-6 col-md-4 col-lg-3" v-for="restaurant in restaurants" :key="restaurant.id">
                             <!-- link to ShowRestaurantPage -->
 
-                            <router-link class="text-decoration-none" :to="{ name: 'restaurant.show', params: { id: restaurant.id } }">
+                            <router-link class="text-decoration-none"
+                                :to="{ name: 'restaurant.show', params: { id: restaurant.id } }">
 
-                                <div class="card h-100">
-                                    <h5 class="gold-text card-title">{{ restaurant.restaurant_name }}</h5>
+                                <div class="mx-2 card h-100">
+                                    <h5 class="gold-text card-title my-2">{{ restaurant.restaurant_name }}</h5>
                                     <img :src="getImageURL(restaurant)" class="card-img-top h-75" alt="">
                                     <div class="card-body d-flex flex-wrap">
-                                        <p class="card-text text-white p-0 m-1 d-flex" v-for="cuisine in restaurant.cuisines">
+                                        <p class="card-text text-white p-0 m-1 d-flex"
+                                            v-for="cuisine in restaurant.cuisines">
                                             {{ cuisine.cuisine_name }}
                                         </p>
                                     </div>
@@ -173,57 +179,100 @@ export default {
                             </router-link>
 
                         </div>
+
                     </div>
-                
+                </div>
+
             </div>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-@import '../styles/partials/variables' ;
-//  *{
-//      border: 1px dashed red;
-//  }
+@import '../styles/partials/variables';
 
+*{
+    border: 1px dotted white ;
+}
+.container-fluid {
+    display: flex;
+    height: 85vh; // // /// // this must be bigger than .scrollable height /// // // //
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+    max-width: 1600px;
+
+}
+
+.scrollable {
+    height: 69vh; // // /// // this must be smaller than .container-fluid height /// // // //
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 0;
+    overflow-y: auto;
+}
 
 
 .filterTitle {
-
-    font-weight: 500;
-    margin-top: 32px;
+   margin: 18px;
 }
 
 .form-check-label {
 
     font-size: 1rem;
-    padding-left: 10px;
+
 }
 
 .form-check .form-check-input {
-    margin-left: 0;
+    margin-left: 0px;
 }
 
-.left-side {
-    min-width: 180px; //sotto questa soglia si spacca il layout
+.scroll-side {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: auto; // // /// // // // // da rivedere// /// // // // //  //
+    padding: 1rem;
+    height: auto;
 }
-.gold-text{
-    color:$gold_text;
+
+.check-select {
+    justify-items: center;
 }
+
+.gold-text {
+    color: $gold_text;
+}
+
 .card-img-top {
     object-position: center;
     object-fit: cover;
+    max-width: 500px;
+
 }
-.card{
+
+.v-card{
+    aspect-ratio: 1/1.2;
+    padding: 0.5rem;
+
+}
+
+.card {
     background-color: $bg_color;
     border: 1px solid rgba(255, 255, 255, 0.338);
-    box-shadow:  inset 0px 10px 27px -8px #141414,
-                 inset 0px -10px 18px -8px $gold_text,
-                  5px 5px 15px 5px rgba(0,0,0,0);
-    p{
-        font-size: 0.9rem;
+    box-shadow: inset 0px 10px 27px -8px #141414,
+        inset 0px -10px 18px -8px $gold_text,
+        5px 5px 15px 5px rgba(0, 0, 0, 0);
+
+   
+   
+
+    p {
+        font-size: 0.8rem;
         text-decoration: none;
     }
-
 }
 </style>
