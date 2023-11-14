@@ -121,18 +121,18 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid  p-5">
-        <div class="row d-flex flex-column flex-shrink-0 ">
+    <div class="container-fluid">
+        <div class="row d-flex flex-column ">
             <div class="check-select d-flex flex-column">
                 <h5 class="filterTitle text-center gold-text">Filtro Cucine</h5>
 
-                <div class="check-select d-flex flex-grow-1 overflow-auto">
-                    <div class="p-2 mx-3 d-flex " v-for="cuisine in cuisines" :key="cuisine.id">
+                <div class="checkers d-flex overflow-auto">
+                    <div class="d-flex single-check" v-for="cuisine in cuisines" :key="cuisine.id">
                         <input class="form-check-input" type="checkbox" @click="filterData($event)"
                             :value="cuisine.cuisine_name" :id="cuisine.id">
-                        <label class="form-check-label text-white mx-2" :for="cuisine.id">
+                        <div class="form-check-label text-white mx-1" :for="cuisine.id">
                             {{ cuisine.cuisine_name }}
-                        </label>
+                        </div>
                     </div>
                 </div>
 
@@ -145,7 +145,7 @@ export default {
                     <h2 class="filterTitle mb-4 text-center gold-text">Ristoranti che consegnano a Boolean City</h2>
                     <!-- searchbar for restaurants -->
                     <form>
-                        <input v-model="searchText" @keyup="fetchRestaurants" class="form-control" name="searchText"
+                        <input v-model="searchText" @keyup="fetchRestaurants" class="form-control w-75 mx-auto" name="searchText"
                             id="searchText" placeholder="Cerca ristorante">
 
                     </form>
@@ -166,7 +166,7 @@ export default {
                                 :to="{ name: 'restaurant.show', params: { id: restaurant.id } }">
 
                                 <div class="mx-2 card h-100">
-                                    <h5 class="gold-text card-title my-2">{{ restaurant.restaurant_name }}</h5>
+                                    <h4 class="gold-text text-center card-title my-2">{{ restaurant.restaurant_name }}</h4>
                                     <img :src="getImageURL(restaurant)" class="card-img-top h-75" alt="">
                                     <div class="card-body d-flex flex-wrap">
                                         <p class="card-text text-white p-0 m-1 d-flex"
@@ -191,9 +191,8 @@ export default {
 <style lang="scss" scoped>
 @import '../styles/partials/variables';
 
-*{
-    border: 1px dotted white ;
-}
+
+
 .container-fluid {
     display: flex;
     height: 85vh; // // /// // this must be bigger than .scrollable height /// // // //
@@ -201,7 +200,13 @@ export default {
     flex-grow: 0;
     flex-shrink: 1;
     overflow: hidden;
-    max-width: 1600px;
+    padding: 0 ;
+    max-width: 1700px;
+
+    background-image: url("/public/pngwing.com (3).png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40%;
 
 }
 
@@ -220,13 +225,15 @@ export default {
 }
 
 .form-check-label {
-
     font-size: 1rem;
-
 }
 
-.form-check .form-check-input {
-    margin-left: 0px;
+.checkers{
+
+    //    transform: translateX(-50%);    
+}
+.single-check{
+    margin: 0 1rem;
 }
 
 .scroll-side {
@@ -234,13 +241,8 @@ export default {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    width: auto; // // /// // // // // da rivedere// /// // // // //  //
     padding: 1rem;
     height: auto;
-}
-
-.check-select {
-    justify-items: center;
 }
 
 .gold-text {
@@ -266,13 +268,21 @@ export default {
     box-shadow: inset 0px 10px 27px -8px #141414,
         inset 0px -10px 18px -8px $gold_text,
         5px 5px 15px 5px rgba(0, 0, 0, 0);
-
-   
-   
-
+    
     p {
         font-size: 0.8rem;
         text-decoration: none;
     }
 }
+
+.card:hover{
+
+    box-shadow: inset 0px 10px 27px -8px #141414,
+        inset 0px -10px 18px -8px $gold_text,
+        3px 2px 8px 1px rgb(216, 216, 216),
+        5px 5px 15px 10px #c3c3c359,
+        14px 11px 15px 0px rgba(193, 193, 193, 0.223);
+}
+
+
 </style>
