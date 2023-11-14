@@ -1,23 +1,38 @@
 <script></script>
 <template>
 
-    <div class="container jumbotron mt-5 mb-5">
+    <div class="container">
         <div class="text-light pt-5">
             <h2 class="display-2 fw-bold fst-italic text-center">Always, anywhere, whenever <span class="d-md-none">you want.</span><br><span class="d-md-inline" > you want</span> </h2>
         </div>
         <div class="jumbo-main row justify-content-md-center mt-5 mt-md-0 px-lg-5">
-            <div class="col-12 col-md-8 mb-3 d-md-flex align-items-sm-center gap-md-3">
+            <div class="col-12 col-md-8 d-md-flex align-items-sm-center gap-md-3">
                 <div class="img-container order-md-last mb-5">
                     <img src="/public/img/hero-1.png" alt="" class="pasta-img">
                 </div>
                 <p class="text-center mt-3 text-white-50 lh-lg">Scopri il gusto a domicilio con la nostra consegna cibo! Da colazioni deliziose a cene abbondanti, goditi i sapori autentici sempre ovunque, quando vuoi. Un clic e ti portiamo la bontà a casa tua. Semplice, veloce e delizioso!</p>
             </div>
         </div>
-        <div class="restaurant-button text-center m-4 mb-5 pb-5">
+        <div class="restaurant-button text-center m-4 mb-2 pb-5">
             <RouterLink :to="{name: 'home'}" class="btn my-button">Scopri i Ristoranti</RouterLink>
         </div>
+    </div>
+    
 
-        <div class="row mt-5 gap-5 justify-content-md-center">
+    <!-- video -->
+    <div class="slow-video">
+            <video src="/public/video/pata.mp4" autoplay loop muted></video>
+    </div>
+
+
+    <!-- quote -->
+
+    <div class="container">
+        <p class="text-center p-3 p-md-5 fst-italic">"Consegniamo non solo cibo, ma esperienze culinarie direttamente alla tua porta. Ogni piatto è un viaggio delizioso che inizia con un click. Scopri il gusto straordinario, perché la vera felicità è fatta di sapori autentici, comodamente consegnati a casa tua."</p>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <div class="row g-5 justify-content-md-center">
            <!-- work with us -->
             <div class="col-12 col-md-10 col-lg-5">
                 <div class="card text-bg-dark h-100">
@@ -25,7 +40,7 @@
                     <div class="card-img-overlay d-flex flex-column">
                         <h5 class="card-title mt-auto">Diventa Nostro Partner</h5>
                         <p class="card-text">Affidati a noi per la gestione delle tue consegne, cosi potrai dedicarti a offrire i piatti migliori.</p>
-                        <button class="btn white-button"><a href="http://127.0.0.1:8000/register">Inizia Subito!</a></button>
+                        <a class="btn white-button" href="http://127.0.0.1:8000/register">Inizia Subito!</a>
                     </div>
                 </div>    
             </div>
@@ -45,7 +60,6 @@
 
         </div>
     </div>
-
 </template>
 
 <style lang="scss" scoped>
@@ -65,7 +79,7 @@
     }
 
     .bottom-img{
-        filter: blur(1px);
+        filter: blur(3px);
     }
 
     .white-button{
@@ -121,11 +135,24 @@
         }
 
         @media screen and (min-width: 992px){
-            margin-top: -25%;
+            margin-top: -40%;
                 }
             }
 
     }
+    .card-text,
+    .card-title{
+        background-color: rgba(196, 196, 176, 0.377);
+    }
 
+    .slow-video{
+        height: 300px;
+        overflow: hidden;
+
+        video{
+            width: 100%;
+            height: auto;
+        }
+    }
     
 </style>
