@@ -128,11 +128,13 @@ export default {
                         nonce: payload.nonce
                     })
                         .then(response => {
+                            console.log(response)
                             self.showUI = !self.showUI;
                             self.$router.push({ name: 'success' });
                         })
                         .catch(error => {
-                            //console.log('Error');
+                            console.log('Error');
+                            self.$router.push({ name: 'rejected' });
                             // Puoi gestire l'errore qui
                         });
                 });

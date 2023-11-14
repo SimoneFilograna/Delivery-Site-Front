@@ -6,6 +6,7 @@ import RestaurantShowPage from "./pages/RestaurantShowPage.vue";
 import HomePage from "./pages/Home.vue";
 import Checkout from "./pages/Checkout.vue";
 import Success from "./pages/Success.vue";
+import Rejected from "./pages/Rejected.vue";
 
 const routes= [
     {
@@ -40,6 +41,13 @@ const routes= [
         path: "/success",
         name: "success",
         component: Success,
+        
+    },
+
+    {
+        path: "/rejectd",
+        name: "rejected",
+        component: Rejected,
         
     },
     
