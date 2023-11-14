@@ -23,21 +23,26 @@ export default {
 </script>
 
 <template>
-    <div class="card mb-3">
-        <div class="row g-0">
-            <div class="col-md-4">
+    <div class="card mb-3 text-center">
+        <div class="row align-items-md-center">
+
+            <!-- image -->
+            <div class="col-12 col-md-5 col-lg-3">
                 <img :src="getPlateImageUrl(Plate)" class="card-img-top" />
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
+            <div class="col-12 col-md-6 col-lg-9">
+                <div class="card-body text-md-start">
 
                     <form @submit.prevent="addToCartArray">
                     <h5 class="card-title">{{ Plate.plate_name }}</h5>
                     <p class="card-text">{{ Plate.description }}</p>
-                    <p class="card-text"><small class="text-body-secondary">{{ Plate.ingredients }}</small></p>
-                    <p class="card-text">{{ Plate.price }}</p>              
+                    <p class="card-text"><small class="">{{ Plate.ingredients }}</small></p>
 
-                    <button class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
+                    <div class="d-flex justify-content-center align-items-center gap-3 justify-content-md-start">
+                        <p class="card-text">{{ Plate.price }} €</p>              
+                        <button class="btn my-button"><i class="fa-solid fa-cart-plus"></i></button>
+                    </div>
+
 
                     </form>
                 </div>
@@ -46,4 +51,43 @@ export default {
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    @use "../styles/partials/variables";
+    .card{
+        color: white;
+        background-color: transparent;
+        border: 1px solid variables.$gold_text;
+        padding: .2rem;
+        box-shadow: inset 0px 10px 27px -8px #141414,         
+        inset 0px -10px 18px -8px variables.$gold_text,         
+        5px 5px 15px 5px rgba(0, 0, 0, 0);
+
+        .card-img-top{
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            
+            @media screen and (min-width: 380px){
+                width: 50%;
+            }
+            @media screen and (min-width: 768px){
+                width: 100%;
+            }
+            
+        }
+        .my-button{
+        background-color: variables.$gold_text;
+        border-radius: 0;
+        aspect-ratio: 1/1;
+
+        font-weight: 600;
+        font-size: .8rem;
+    
+        &:hover{
+            color: variables.$gold-text;
+            background-color: transparent;
+            border-color: variables.$gold-text;
+        }
+    }
+
+    }
+</style>
