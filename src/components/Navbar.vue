@@ -6,8 +6,8 @@
 
 <template>
     <nav class="container-fluid d-flex align-items-center justify-content-between">
-        <RouterLink :to="{name: 'home'}" class="text-decoration-none logo_text">DeliveBoo</RouterLink>
-
+        <RouterLink :to="{name: 'welcome'}" class="text-decoration-none logo_text">DeliveBoo</RouterLink>
+        <RouterLink :to="{name: 'home'}" class="text-decoration-none logo_text">Homepage</RouterLink>
         <div class="d-flex gap-4">
         <a href="http://127.0.0.1:8000/login" class="text-decoration-none nav_link">Login</a>
         <a href="http://127.0.0.1:8000/register" class="text-decoration-none nav_link">Register</a>
