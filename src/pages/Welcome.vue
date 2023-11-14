@@ -20,7 +20,7 @@
     
 
     <!-- video -->
-    <div class="slow-video">
+    <div class="d-none d-md-block slow-video">
             <video src="/public/video/pata.mp4" autoplay loop muted></video>
     </div>
 
@@ -151,12 +151,14 @@
     }
 
     .slow-video{
-        height: 300px;
+        max-height: 300px;
         overflow: hidden;
 
         video{
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
     }
     
