@@ -56,6 +56,11 @@ export default {
     .card{
         color: white;
         background-color: transparent;
+        border: 1px solid variables.$gold_text;
+        padding: .2rem;
+        box-shadow: inset 0px 10px 27px -8px #141414,         
+        inset 0px -10px 18px -8px variables.$gold_text,         
+        5px 5px 15px 5px rgba(0, 0, 0, 0);
 
         .card-img-top{
             aspect-ratio: 1/1;

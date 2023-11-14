@@ -132,23 +132,22 @@ export default {
         <img src="/public/img/showrestaurant-jam.png" class="top-banner" alt="">
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-9">
 
-                <!-- restaurant info -->
+            <!-- restaurant info -->
 
-                <div class="row flex-column align-items-center flex-md-row gap-2">
-
-                    <div class="col text-center ">
-                        <h1 class="display-2">{{restaurant.restaurant_name }}</h1>
-                        <p class="mt-2">Tel:{{ restaurant.restaurant_phone }}</p>
-                        <p>Via: {{ restaurant.restaurant_address }}</p>
-                        <p>P.IVA: {{ restaurant.vat_number }}</p>
-                        
-                    </div>
+            <div class="text-center">
+                <div class="head-box text-center ">
+                    <h1 class="display-2">{{restaurant.restaurant_name }}</h1>
+                    <p class="mt-2">Tel:{{ restaurant.restaurant_phone }}</p>
+                    <p>Via: {{ restaurant.restaurant_address }}</p>
+                    <p>P.IVA: {{ restaurant.vat_number }}</p>                      
                 </div>
-                <div class="plates-container mt-5">
-                    <div class="row">
+            </div>
+
+            <div class="row gap-4 justify-content-center">
+
+                <div class="col-12 col-md-8 mt-5">
+                    <div class="row d-flex ">
                         <div class="col-12" v-for="plate in restaurant.plates">
 
                             <div class="box">
@@ -156,98 +155,96 @@ export default {
                                 <PlateCard :Plate="plate" @addtoCart="addNewItem" />
                             </div>
 
-                        </div>
-
+                        </div>  
                     </div>
                 </div>
-
-                <!-- canvas right -->
-
-                <button class="btn special" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="fa-solid fa-cart-plus"></i></button>
                 
-                <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Il tuo carrello</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <div class="d-none d-lg-flex flex-column gap-5 col-md-3 ">
+                    <img src="/public/img/amazon-adspng.png"  class=" w-100 object-fit-contain">
+                    <img src="/public/img/much-adsjpg.jpg"  class=" w-100 object-fit-contain">
+                    <img src="/public/img/sky.webp"  class=" w-100 object-fit-contain">
+                    <img src="/public/img/netflix.jpg"  class=" w-100 object-fit-contain">
+                </div>
+
+            </div>
+
+            <!-- canvas right -->
+
+            <button class="btn special" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="fa-solid fa-cart-plus"></i></button>
+            
+            <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Il tuo carrello</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+
+                        <!-- Shopping Cart -->
+                    <div class="shopping-cart text-white d-flex flex-column">
+                    
+                        <p class="order-title p-3">Hai ordinato:</p>
+
+                    
+                        <div class="itemCard d-flex justify-content-between" v-for="item, index in cartItems">
+
+                            <div class="d-flex align-items-baseline w-100" v-if="item.restaurant_id == restaurant.id">
+                                <div class="plate_name">
+                                    <p >{{ item.plate_name }}</p>
+                                </div>
+
+                                <div class="d-flex align-items-center interaction">
+                                    <!-- remove button cart -->
+                                    <button class="cart-button" @click="reduceItem(index)">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                
+                                    <!-- quantity-- -->
+                                    <div class="quantity w-25 px-1">
+                                        <p>{{ item.quantity }}</p>
+                                    </div>
+                                
+                                    <!-- add button cart -->
+
+                                    <button  class="cart-button" @click="addNewItem(item)">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>                                         
+                                </div>
+
+                                <p class="price">{{ singlePlatePrice(item.price, item.quantity) }} €</p>
+                            </div>
+
                         </div>
-                        <div class="offcanvas-body">
 
-                            <!-- Shopping Cart -->
-                        <div class="shopping-cart text-white d-flex flex-column">
+                    
+
+                        <!-- checkout button -->
+                        <div class="text-center mt-auto" v-if="cartItems.length !== 0 && cartItems[0].restaurant_id === restaurant.id">
+
+                            <!-- total price -->
+                            <div class="d-flex justify-content-between">
+                                <p>Totale:</p>
+                                <p>{{totalSum().toFixed(2)}} €</p>
+                            </div>
+
+                            <!-- checkout button -->
+
+                            <RouterLink :to="{ name: 'checkout' }" class="btn my-button" v-on:click.prevent="cartItems.length === 0 ? null : showError()">Checkout</RouterLink>
+                        </div> 
+
+                        <div v-if="cartItems.length !== 0 && cartItems[0].restaurant_id !== restaurant.id"> 
+                            <div class="full-cart p-5"> 
+                                <p class="pb-4"> Attenzione il tuo carrello non è vuoto</p>
+                                <small>Cliccando qui cancellerai iul tuo carrello</small>
                         
-                            <p class="order-title p-3">Hai ordinato:</p>
-
-                        
-                            <div class="itemCard d-flex justify-content-between" v-for="item, index in cartItems">
-
-                                <div class="d-flex align-items-baseline w-100" v-if="item.restaurant_id == restaurant.id">
-                                    <div class="plate_name">
-                                        <p >{{ item.plate_name }}</p>
-                                    </div>
-
-                                    <div class="d-flex align-items-center interaction">
-                                        <!-- remove button cart -->
-                                        <button class="cart-button" @click="reduceItem(index)">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </button>
-                                    
-                                        <!-- quantity-- -->
-                                        <div class="quantity w-25 px-1">
-                                            <p>{{ item.quantity }}</p>
-                                        </div>
-                                    
-                                        <!-- add button cart -->
-    
-                                        <button  class="cart-button" @click="addNewItem(item)">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>                                         
-                                    </div>
-
-                                    <p class="price">{{ singlePlatePrice(item.price, item.quantity) }} €</p>
+                                <div class="text-center">
+                                    <button class="btn alert-button mt-4" @click="clearCart()">Svuota il carrello</button>
                                 </div>
 
                             </div>
-
-                        
-
-                            <!-- checkout button -->
-                            <div class="text-center mt-auto" v-if="cartItems.length !== 0 && cartItems[0].restaurant_id === restaurant.id">
-
-                                <!-- total price -->
-                                <div class="d-flex justify-content-between">
-                                    <p>Totale:</p>
-                                    <p>{{totalSum().toFixed(2)}} €</p>
-                                </div>
-
-                                <!-- checkout button -->
-
-                                <RouterLink :to="{ name: 'checkout' }" class="btn my-button" v-on:click.prevent="cartItems.length === 0 ? null : showError()">Checkout</RouterLink>
-                            </div> 
-
-                            <div v-if="cartItems.length !== 0 && cartItems[0].restaurant_id !== restaurant.id"> 
-                                <div class="full-cart p-5"> 
-                                    <p class="pb-4"> Attenzione il tuo carrello non è vuoto</p>
-                                    <small>Cliccando qui cancellerai iul tuo carrello</small>
-                            
-                                    <div class="text-center">
-                                        <button class="btn alert-button mt-4" @click="clearCart()">Svuota il carrello</button>
-                                    </div>
-
-                                </div>
-                            </div> 
-                        </div>
+                        </div> 
                     </div>
                 </div>
-
-
-
-
-                
-            </div>
-
-
-            
-        </div>
+            </div>          
     </div>
 </template>
 
@@ -336,7 +333,11 @@ export default {
     }
 }
 
+    // cart icon
 .special{
+    width: 70px;
+    text-align: center;
+    aspect-ratio: 1/1;
     background-color: variables.$gold_text;
     border-radius: 50%;
     font-size: 1.5rem;
