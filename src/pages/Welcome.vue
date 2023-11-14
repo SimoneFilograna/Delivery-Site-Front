@@ -37,10 +37,12 @@
             <div class="col-12 col-md-10 col-lg-5">
                 <div class="card text-bg-dark h-100">
                     <img src="/public/img/cuoco.png" class="card-img bottom-img" alt="cuoco">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <h5 class="card-title mt-auto">Diventa Nostro Partner</h5>
-                        <p class="card-text">Affidati a noi per la gestione delle tue consegne, cosi potrai dedicarti a offrire i piatti migliori.</p>
-                        <a class="btn white-button" href="http://127.0.0.1:8000/register">Inizia Subito!</a>
+                    <div class="card-img-overlay d-flex flex-column p-0">
+                        <div class="mt-auto container-text p-3">
+                            <h5 class="card-title mt-auto">Diventa Nostro Partner</h5>
+                            <p class="card-text">Affidati a noi per la gestione delle tue consegne, cosi potrai dedicarti a offrire i piatti migliori.</p>
+                            <a class="btn white-button pb-1" href="http://127.0.0.1:8000/register">Inizia Subito!</a>
+                        </div>
                     </div>
                 </div>    
             </div>
@@ -50,10 +52,12 @@
             <div class="col-12 col-md-10 col-lg-5">
                 <div class="card text-bg-dark h-100 object-fit-cover">
                     <img src="/public/img/ordina-ora.png" class="card-img bottom-img" alt="cuoco">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <h5 class="card-title mt-auto">Ordina Subito!</h5>
-                        <p class="card-text">Scegli tra i migliori ristoranti vicino a te!</p>
-                        <RouterLink :to="{name: 'home'}" class="btn white-button">Ordina Ora!</RouterLink>
+                    <div class="card-img-overlay d-flex flex-column p-0">
+                        <div class="mt-auto container-text p-3">
+                            <h5 class="card-title">Ordina Subito!</h5>
+                            <p class="card-text">Scegli tra i migliori ristoranti vicino a te!</p>
+                            <RouterLink :to="{name: 'home'}" class="btn white-button">Ordina Ora!</RouterLink>
+                        </div>
                     </div>
                 </div>    
             </div>
@@ -79,7 +83,7 @@
     }
 
     .bottom-img{
-        filter: blur(3px);
+        filter: blur(0px);
     }
 
     .white-button{
@@ -140,9 +144,9 @@
             }
 
     }
-    .card-text,
-    .card-title{
-        background-color: rgba(196, 196, 176, 0.377);
+
+    .container-text{
+        background-color: rgba(0, 0, 0, 0.651);
     }
 
     .slow-video{
