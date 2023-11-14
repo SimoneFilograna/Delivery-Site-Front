@@ -12,10 +12,15 @@
   <div class="wrapper">
     <NavbarComponent></NavbarComponent>
 
-    <Router-view></Router-view>
+    <Router-view class="d-flex flex-column overflow-auto"></Router-view>
   </div>
 </template>
 
-<style>
-  
+<style lang="scss">
+  @use "./styles/partials/variables";
+
+  body{
+    background-color: variables.$bg_color;
+    color: variables.$gold_text;
+  }
 </style>
