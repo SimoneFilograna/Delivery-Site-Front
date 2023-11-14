@@ -153,7 +153,7 @@ export default {
 
         // total price for plate
         totalPlatePrice(a, b) {
-            return a * b
+            return (a * b).toFixed(2)
         },
 
         onFormSubmit() {

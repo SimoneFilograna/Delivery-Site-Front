@@ -98,7 +98,7 @@ export default {
         // single price for plate
 
         singlePlatePrice(a,b){
-            return a * b
+            return (a * b).toFixed(2)
         },
 
         // total price
@@ -111,11 +111,8 @@ export default {
             this.totalPrice=total.toFixed(2);
             localStorage.setItem('totalPrice', JSON.stringify(this.totalPrice));
             localStorage.setItem('restaurant_name', JSON.stringify(this.restaurant.restaurant_name));
-            return total.toFixed(2);
-        }
-
-
-
+            return total;
+        },
 
     },
     mounted() {
@@ -183,8 +180,10 @@ export default {
                         
                             <div class="itemCard d-flex justify-content-between" v-for="item, index in cartItems">
 
-                                <div class="d-flex align-items-baseline justify-content-between gap-3" v-if="item.restaurant_id == restaurant.id">
-                                    <p class="plate_name">{{ item.plate_name }}</p>
+                                <div class="d-flex align-items-baseline w-100" v-if="item.restaurant_id == restaurant.id">
+                                    <div class="plate_name">
+                                        <p >{{ item.plate_name }}</p>
+                                    </div>
 
                                     <div class="d-flex align-items-center interaction">
                                         <!-- remove button cart -->
@@ -193,7 +192,9 @@ export default {
                                         </button>
                                     
                                         <!-- quantity-- -->
-                                        <p class="px-4 pt-1">{{ item.quantity }}</p>
+                                        <div class="quantity w-25 px-1">
+                                            <p>{{ item.quantity }}</p>
+                                        </div>
                                     
                                         <!-- add button cart -->
     
@@ -215,7 +216,7 @@ export default {
                                 <!-- total price -->
                                 <div class="d-flex justify-content-between">
                                     <p>Totale:</p>
-                                    <p>{{ totalSum() }} €</p>
+                                    <p>{{totalSum().toFixed(2)}} €</p>
                                 </div>
 
                                 <!-- checkout button -->
@@ -299,10 +300,12 @@ export default {
             }
         }
 
-        .plate_name,
+        .plate_name{
+            flex-basis: 40%;
+        }
         .interaction,
         .price{
-            flex-basis: 33.33%;
+            flex-basis: 30%;
         }
         .cart-button{
             background-color: variables.$gold_text;
