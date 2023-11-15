@@ -155,7 +155,7 @@ export default {
 
 
 
-                <div class="scroll-side my-3">
+                <div class="row scroll-side my-3">
                     
                     <div class="d-flex flex-wrap ">
 
@@ -165,9 +165,9 @@ export default {
                             <router-link class="text-decoration-none"
                                 :to="{ name: 'restaurant.show', params: { id: restaurant.id } }">
 
-                                <div class="mx-2 card h-100">
-                                    <h4 class="gold-text text-center card-title my-2">{{ restaurant.restaurant_name }}</h4>
-                                    <img :src="getImageURL(restaurant)" class="card-img-top h-75" alt="">
+                                <div class="mx-2 card w-100 h-100">
+                                    <h5 class="gold-text text-center card-title my-2">{{ restaurant.restaurant_name }}</h5>
+                                    <img :src="getImageURL(restaurant)" class="card-img-top " alt="">
                                     <div class="card-body d-flex flex-wrap">
                                         <p class="card-text text-white p-0 m-1 d-flex"
                                             v-for="cuisine in restaurant.cuisines">
@@ -248,12 +248,10 @@ export default {
 .card-img-top {
     object-position: center;
     object-fit: cover;
-    max-width: 500px;
-
+    height: 100%;
 }
 
 .v-card{
-    aspect-ratio: 1/1.2;
     padding: 0.5rem;
 
 }
@@ -264,7 +262,6 @@ export default {
     box-shadow: inset 0px 10px 27px -8px #141414,
         inset 0px -10px 18px -8px $gold_text,
         5px 5px 15px 5px rgba(0, 0, 0, 0);
-    
     p {
         font-size: 0.8rem;
         text-decoration: none;

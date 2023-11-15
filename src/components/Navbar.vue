@@ -27,7 +27,7 @@ export default {
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <RouterLink class="btn my-button text-decoration-none" :to="{ name: 'home' }" >Homepage</RouterLink>
+            <RouterLink class="btn my-button text-decoration-none" :to="{ name: 'home' }"> Ristoranti </RouterLink>
           </li>          
           <li class="nav-item">
             <RouterLink  :to="{ name: 'about' }" class="btn my-button text-decoration-none">About us</RouterLink>
