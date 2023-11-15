@@ -8,6 +8,7 @@ import Checkout from "./pages/Checkout.vue";
 import Success from "./pages/Success.vue";
 import Rejected from "./pages/Rejected.vue";
 import Welcome from "./pages/Welcome.vue";
+import AboutUs from "./pages/AboutUs.vue"
 
 const routes= [
 
@@ -15,6 +16,11 @@ const routes= [
         path: "/",
         name: "welcome",
         component: Welcome,
+    },
+    {
+        path: "/about",
+        name: "about",
+        component: AboutUs
     },
     {
         path: "/home",
