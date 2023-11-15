@@ -1,2 +1,38 @@
 @import "bootstrap";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "./partials/variables";
+
+::-webkit-scrollbar {
+    background-color: rgb(25, 19, 21);
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track{
+    height: 8px;
+    width: 8px;
+    background-color: rgb(17, 21, 23);
+
+}
+::-webkit-scrollbar-thumb{
+    border: 1px solid rgb(45, 45, 45);
+    background-color: $gold_text;
+    border-radius: 5px;
+
+}
+
+.form-check-input{
+    background-color: transparent;
+}
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 221, 159, 0.284);
+}
+
+.form-check-input:checked{
+    background-color: rgba(255, 221, 159, 0.527);
+    border: 1px solid $gold_text;
+    color: black;
+}
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 221, 159, 0.744);
+    border-color: rgba(250, 220, 159, 0.333);
+}
