@@ -60,6 +60,7 @@
 
     footer{
         background-color: variables.$bg_color_secondary;
+        margin-top: 2rem;
 
         .social-container,
         .utility-link{
