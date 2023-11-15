@@ -135,7 +135,7 @@
         }
     
         @media screen and (min-width: 768px){
-            width: 250%;
+            width: 200%;
         }
 
         @media screen and (min-width: 992px){
