@@ -46,7 +46,7 @@
                         <a href="#0">Politica sulla privacy</a>
                         <a href="http://127.0.0.1:8000/register">Registrati</a>
                         <a href="http://127.0.0.1:8000/login">Login</a>
-                        <a href="http://127.0.0.1:8000/dashboard">Dashboard</a>
+                        <a href="http://127.0.0.1:8000/plates">Dashboard</a>
 
 
 
