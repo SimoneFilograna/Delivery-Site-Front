@@ -122,7 +122,7 @@ export default {
 
 <template>
     <div class="container-fluid">
-        <div class="row d-flex flex-column ">
+        <div class="row d-flex flex-column">
             <div class="check-select d-flex flex-column">
                 <h5 class="filterTitle text-center gold-text">Filtro Cucine</h5>
 
@@ -192,26 +192,25 @@ export default {
 @import '../styles/partials/variables';
 
 
-
 .container-fluid {
     display: flex;
-    height: 85vh; // // /// // this must be bigger than .scrollable height /// // // //
+    height: 92vh; // // /// // this must be bigger than .scrollable height /// // // //
     flex-direction: column;
     flex-grow: 0;
     flex-shrink: 1;
     overflow: hidden;
     padding: 0 ;
-    max-width: 1700px;
+    padding: 0 10%;
 
-    background-image: url("/public/pngwing.com (3).png");
-    background-position: center;
+    //background-image: url("/public/pngwing.com (6).png");
+    background-position:center;
     background-repeat: no-repeat;
-    background-size: 40%;
+    background-attachment: fixed;
 
 }
 
 .scrollable {
-    height: 69vh; // // /// // this must be smaller than .container-fluid height /// // // //
+    height: 84vh; // // /// // this must be smaller than .container-fluid height /// // // //
     display: flex;
     flex-direction: column;
     flex-grow: 1;
