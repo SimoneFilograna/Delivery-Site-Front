@@ -11,7 +11,7 @@
                     <img src="/public/img/hero-1.png" alt="" class="pasta-img">
                 </div>
                 <p class="text-center mt-3 text-white-50 lh-lg">Scopri il gusto a domicilio con la nostra consegna cibo! Da
-                    colazioni deliziose a cene abbondanti, goditi i sapori autentici sempre ovunque, quando vuoi. Un clic e
+                    colazioni deliziose a cene abbondanti, goditi i sapori autentici sempre ovunque, quando vuoi. Un click e
                     ti portiamo la bontà a casa tua. Semplice, veloce e delizioso!</p>
             </div>
         </div>
