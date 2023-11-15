@@ -228,10 +228,7 @@ export default {
     font-size: 1rem;
 }
 
-.checkers{
 
-    //    transform: translateX(-50%);    
-}
 .single-check{
     margin: 0 1rem;
 }
