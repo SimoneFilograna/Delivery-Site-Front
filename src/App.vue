@@ -1,9 +1,11 @@
 <script>
   import NavbarComponent from "../src/components/Navbar.vue";
+  import TheFooter from "./components/TheFooter.vue"
 
   export default {
     components: {
-      NavbarComponent
+      NavbarComponent,
+      TheFooter
     }
   }
 </script>
@@ -13,6 +15,8 @@
     <NavbarComponent></NavbarComponent>
     
     <Router-view></Router-view>
+
+    <TheFooter></TheFooter>
   </div>
 </template>
 
