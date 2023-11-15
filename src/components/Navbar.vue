@@ -29,21 +29,6 @@
     margin: 13px 0px;
   }
 
-  .searchCustom{
-    background-color: transparent;
-    border: 0;
-  
-  }
-
-  .searchIcon {
-    color: #abadad;
-  }
-
-  input:focus-visible {
-    outline: none;
-    color: black;
-  }
-
   .nav_link {
     color: black;
   }
