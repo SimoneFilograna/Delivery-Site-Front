@@ -25,10 +25,33 @@
     </div>
 
 
+    <!-- best food section -->
+    <div class="food-container">
+        <div class="container py-5">
+            <div class="row align-items-center g-4">
+                <div class="col-12 col-md-6">
+                    <img src="/public/img/food-section.webp" alt="" class="w-100">
+                </div>
+                <div class="col-12 col-md-6">
+                    <p>Il nostro impegno è offrirti non solo cibo, ma un'esperienza culinaria affidabile e deliziosa, direttamente a casa tua. Scegli la comodità senza compromessi sulla qualità con la nostra consegna."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- quote -->
 
-    <div class="container">
-        <p class="text-center p-3 p-md-5 fst-italic">"Consegniamo non solo cibo, ma esperienze culinarie direttamente alla tua porta. Ogni piatto è un viaggio delizioso che inizia con un click. Scopri il gusto straordinario, perché la vera felicità è fatta di sapori autentici, comodamente consegnati a casa tua."</p>
+    <div class="container py-5 mt-3">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6">
+                <p class="text-center p-3 p-md-5 fst-italic">"Consegniamo non solo cibo, ma esperienze culinarie direttamente alla tua porta. Ogni piatto è un viaggio delizioso che inizia con un click. Scopri il gusto straordinario, perché la vera felicità è fatta di sapori autentici, comodamente consegnati a casa tua."</p>
+            </div>
+            <div class="col-12 col-md-6">
+                <div>
+                    <img src="/public/img/delivery-photo.webp" alt="" class="w-100">
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Why us  -->
@@ -229,6 +252,9 @@
         }
     }
 
+    .food-container{
+        background-color: variables.$bg_color_secondary;
+    }
     .why-us-section{
         padding: 2rem;
         background-color: variables.$bg_color_secondary;
