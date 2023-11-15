@@ -31,6 +31,72 @@
         <p class="text-center p-3 p-md-5 fst-italic">"Consegniamo non solo cibo, ma esperienze culinarie direttamente alla tua porta. Ogni piatto è un viaggio delizioso che inizia con un click. Scopri il gusto straordinario, perché la vera felicità è fatta di sapori autentici, comodamente consegnati a casa tua."</p>
     </div>
 
+    <!-- Why us  -->
+
+    <div class="why-us-section my-4">
+        <div class="container text-center">
+            <h2 class="mb-5 mt-5">Scegli il nostro servizio</h2>
+            <div class="row g-5">
+
+                <!-- card-fast-delivery -->
+                <div class="col-12 col-md-6 col-xl-3">
+                    <div class="card why-card">
+                        <div class="why-us-icon">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Consegna Veloce e Affidabile</h4>
+                            <p class="card-text">Le nostre consegne sono rapide e affidabili, garantendo che il tuo cibo arrivi in tempi record.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card-quality -->
+                <div class="col-12 col-md-6 col-xl-3">
+                    <div class="card why-card">
+                        <div class="why-us-icon">
+                            <i class="fa-solid fa-cookie-bite"></i>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Ampia Selezione di Cibi di Qualità</h4>
+                            <p class="card-text">Oltre a garantire una consegna rapida, offriamo una vasta selezione di cibi deliziosi provenienti da ristoranti di alta qualità.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card offer -->
+                <div class="col-12 col-md-6 col-xl-3">
+                    <div class="card why-card">
+                        <div class="why-us-icon">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Costi Competitivi o Offerte Speciali</h4>
+                            <p class="card-text">Abbiamo offerte speciali per assicurarci che tu ottenga il massimo valore per il tuo denaro.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card client-service -->
+                <div class="col-12 col-md-6 col-xl-3">
+                    <div class="card why-card">
+                        <div class="why-us-icon">
+                            <i class="fa-solid fa-headphones-simple"></i>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Servizio Clienti Eccellente</h4>
+                            <p class="card-text">Il nostro team di supporto clienti è disponibile 24/7 per assisterti in ogni tua esigenza. La tua soddisfazione è la nostra priorità.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+        
+    </div>
+
+
+    <!-- user interaction -->
+
     <div class="container mt-5 mb-5">
         <div class="row g-5 justify-content-md-center">
            <!-- work with us -->
@@ -162,5 +228,38 @@
             object-position: center;
         }
     }
+
+    .why-us-section{
+        padding: 2rem;
+        background-color: variables.$bg_color_secondary;
+        background-position: top;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+        .why-card{
+            padding: 1.2rem;
+            height: 100%;
+            background-color: transparent;
+            color: white;
+            border-color: variables.$gold_text;
+            
+            .why-us-icon{
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                i{
+                    font-size: 3rem;
+                    vertical-align: middle;
+                    aspect-ratio: 1/1;
+                    color: variables.$gold_text;
+                    display: inline-block;
+                    border: 1px solid variables.$gold_text;
+                    border-radius: 50%;
+                    padding: 1.5rem;
+                }
+            }
+        }
+    }
+
     
 </style>
