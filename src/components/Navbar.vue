@@ -33,7 +33,7 @@ export default {
             <RouterLink  :to="{ name: 'about' }" class="btn my-button text-decoration-none">About us</RouterLink>
           </li>
           <li class="nav-item">
-                  <a class="btn my-button text-decoration-none" href="http://127.0.0.1:8000/dashboard">Area Ristoratori</a>
+                  <a class="btn my-button text-decoration-none" href="http://127.0.0.1:8000/admin/plates">Area Ristoratori</a>
           </li>
 
         </ul>
@@ -80,7 +80,6 @@ export default {
   cursor:pointer;
   position:relative;
   padding:10px;
-  ;
   font-size:28px;
   border-top-right-radius:10px;
   border-bottom-left-radius:10px;
