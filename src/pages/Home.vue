@@ -145,8 +145,8 @@ export default {
                     <h2 class="filterTitle mb-4 text-center gold-text">Ristoranti che consegnano a Boolean City</h2>
                     <!-- searchbar for restaurants -->
                     <form>
-                        <input v-model="searchText" @keyup="fetchRestaurants" class="form-control w-75 mx-auto" name="searchText"
-                            id="searchText" placeholder="Cerca ristorante">
+                        <input v-model="searchText" @keyup="fetchRestaurants" class="form-control w-75 mx-auto"
+                            name="searchText" id="searchText" placeholder="Cerca ristorante">
 
                     </form>
 
@@ -156,10 +156,11 @@ export default {
 
 
                 <div class="row scroll-side my-3">
-                    
+
                     <div class="d-flex flex-wrap ">
 
-                        <div class="v-card d-flex col-12 col-sm-6 col-md-4 col-lg-3" v-for="restaurant in restaurants" :key="restaurant.id">
+                        <div class="v-card d-flex col-12 col-sm-6 col-md-4 col-lg-3" v-for="restaurant in restaurants"
+                            :key="restaurant.id">
                             <!-- link to ShowRestaurantPage -->
 
                             <router-link class="text-decoration-none"
@@ -194,33 +195,33 @@ export default {
 
 .container-fluid {
     display: flex;
-    height: 92vh; // // /// // this must be bigger than .scrollable height /// // // //
+    // height: 92vh; // // /// // this must be bigger than .scrollable height /// // // //
     flex-direction: column;
     flex-grow: 0;
     flex-shrink: 1;
     overflow: hidden;
-    padding: 0 ;
+    padding: 0;
     padding: 0 10%;
 
     //background-image: url("/public/pngwing.com (6).png");
-    background-position:center;
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 
 }
 
 .scrollable {
-    height: 84vh; // // /// // this must be smaller than .container-fluid height /// // // //
+    // height: 84vh; // // /// // this must be smaller than .container-fluid height /// // // //
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     flex-shrink: 0;
-    overflow-y: auto;
+    // overflow-y: auto;
 }
 
 
 .filterTitle {
-   margin: 18px;
+    margin: 18px;
 }
 
 .form-check-label {
@@ -228,7 +229,7 @@ export default {
 }
 
 
-.single-check{
+.single-check {
     margin: 0 1rem;
 }
 
@@ -251,7 +252,7 @@ export default {
     height: 100%;
 }
 
-.v-card{
+.v-card {
     padding: 0.5rem;
 
 }
@@ -262,13 +263,14 @@ export default {
     box-shadow: inset 0px 10px 27px -8px #141414,
         inset 0px -10px 18px -8px $gold_text,
         5px 5px 15px 5px rgba(0, 0, 0, 0);
+
     p {
         font-size: 0.8rem;
         text-decoration: none;
     }
 }
 
-.card:hover{
+.card:hover {
 
     box-shadow: inset 0px 10px 27px -8px #141414,
         inset 0px -10px 18px -8px $gold_text,
@@ -276,6 +278,4 @@ export default {
         5px 5px 15px 10px #c3c3c359,
         14px 11px 15px 0px rgba(193, 193, 193, 0.223);
 }
-
-
 </style>
